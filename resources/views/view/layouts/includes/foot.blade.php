@@ -37,17 +37,4 @@
     });
 </script>
 
-<!-- SWITCHER -->
-<script src="{{ asset('assets/view/js/switcher.js') }}"></script>
-<div id="style-switcher">
-    <h2>Color Switcher <a href="#"><i class="icon_set_1_icon-65"></i></a></h2>
-    <div>
-        <ul class="colors" id="color1">
-            <li><a href="#" class="default" title="Default"></a></li>
-            <li><a href="#" class="aqua" title="Aqua"></a></li>
-            <li><a href="#" class="green_switcher" title="Green"></a></li>
-            <li><a href="#" class="orange" title="Orange"></a></li>
-            <li><a href="#" class="blue" title="Blue"></a></li>
-        </ul>
-    </div>
-</div>
+

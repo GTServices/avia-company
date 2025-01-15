@@ -1,5 +1,6 @@
 @extends('view.layouts.app')
 @section('content')
+    <x-view.hero />
     <main>
         <div class="container margin_60">
 

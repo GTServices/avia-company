@@ -13,7 +13,7 @@
 
 <x-view.header />
 
-<x-view.hero />
+
 
 
 @yield('content')
