@@ -1,0 +1,30 @@
+textarea{
+    max-height: 280px;
+}
+
+.marginCenter {
+    margin-inline: auto;
+}
+
+.cardGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(336px, 1fr));
+    justify-items: center;
+    gap: 0 24px;
+}
+
+@media screen and (max-width: 575px) {
+    .cardGrid{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+.cardGrid > div{
+    width: 100%;
+}
+
+/* .list-widthLimit {
+    max-width: 306px;
+} */
+
