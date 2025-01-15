@@ -33,7 +33,7 @@ class LoginController extends Controller
             return view('view.pages.auth.login')->with('error', $result['message']);
         }
 
-        return redirect()->route('home')->with('success', $result['message']);
+        return redirect()->route('view.home')->with('success', $result['message']);
     }
 
     public function logout(Request $request)
