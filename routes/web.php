@@ -14,7 +14,7 @@ Route::get('/tours', [TourController::class, 'index'])->name('view.tours');
 Route::get('/tours/one', [TourController::class, 'view'])->name('view.tours.view');
 
 
-Route::get('/transfers', [TransferController::class, 'index'])->name('view.home');
+Route::get('/transfers', [TransferController::class, 'index'])->name('view.transfers');
 Route::get('/transfers/one', [TransferController::class, 'view'])->name('view.transfers.view');
 
 
