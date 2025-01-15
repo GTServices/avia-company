@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\View\LoginRequest;
 use App\Services\LoginService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -25,14 +26,14 @@ class LoginController extends Controller
         $result = $this->loginService->loginUser($request->validated());
 
         if ($result['type'] === 'warning') {
-            return back()->with('warning', $result['message']);
+            return view('view.pages.auth.login')->with('warning', $result['message']);
         }
 
         if ($result['type'] === 'error') {
-            return back()->with('error', $result['message']);
+            return view('view.pages.auth.login')->with('error', $result['message']);
         }
 
-        return redirect()->route('view.home')->with('success', $result['message']);
+        return redirect()->route('home')->with('success', $result['message']);
     }
 
     public function logout(Request $request)
