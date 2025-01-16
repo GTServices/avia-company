@@ -9,11 +9,5 @@ class Language extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'lang_code',
-        'site_lang_code',
-        'is_main',
-        'lang_name',
-        'site_name',
-    ];
+    protected $guarded = [];
 }

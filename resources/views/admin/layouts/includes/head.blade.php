@@ -8,7 +8,7 @@
 <script src="{{asset('assets/admin/assets/js/pace.min.js')}}"></script>
 
 <!--plugins-->
-<link href="{{asset('assets/admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
+{{--<link href="{{asset('assets/admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">--}}
 <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/plugins/metismenu/metisMenu.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/plugins/metismenu/mm-vertical.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/plugins/simplebar/css/simplebar.css')}}">
@@ -24,3 +24,4 @@
 <link href="{{asset('assets/admin/sass/semi-dark.css')}}" rel="stylesheet">
 <link href="{{asset('assets/admin/sass/bordered-theme.css')}}" rel="stylesheet">
 <link href="{{asset('assets/admin/sass/responsive.css')}}" rel="stylesheet">
+
