@@ -26,11 +26,11 @@ class LoginController extends Controller
         $result = $this->loginService->loginUser($request->validated());
 
         if ($result['type'] === 'warning') {
-            return view('view.pages.auth.login')->with('warning', $result['message']);
+            return redirect()->route('view.auth.login')->with('warning', $result['message']);
         }
 
         if ($result['type'] === 'error') {
-            return view('view.pages.auth.login')->with('error', $result['message']);
+            return redirect()->route('view.auth.login')->with('error', $result['message']);
         }
 
         return redirect()->route('view.home')->with('success', $result['message']);

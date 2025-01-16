@@ -19,46 +19,26 @@
                                 </div>
                             @endif
 
-                            <!-- Warning Mesajı -->
-                            @if (session('warning'))
-                                <div class="alert alert-warning">
-                                    {{ session('warning') }}
-                                </div>
-                            @endif
-
-                            <!-- Error Mesajı -->
-                            @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-
                             <!-- Validasiya Xətaları -->
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
                                         @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
+                                            <span>{{ $error }}</span>
                                         @endforeach
                                     </ul>
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('view.auth.login') }}">
+                            <form method="POST" action="{{ route('view.auth.password.send_reset_request') }}">
                                 @csrf
+
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required>
                                 </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                </div>
-                                <p class="small">
-                                    <a href="{{ route('view.auth.password.forgot') }}">Forgot Password?</a>
-                                </p>
-                                <button type="submit" class="btn_full">Sign in</button>
-                                <a href="{{ route('view.auth.register') }}" class="btn_full_outline">Register</a>
+
+                                <button type="submit" class="btn_full">Send Password Reset Code</button>
                             </form>
                         </div>
                     </div>

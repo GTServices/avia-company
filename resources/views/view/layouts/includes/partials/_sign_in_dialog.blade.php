@@ -48,7 +48,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div class="float-end"><a href="#">Forgot Password?</a></div>
+                <div class="float-end"><a href="{{route("view.auth.password.forgot")}}">Forgot Password?</a></div>
             </div>
             <div class="text-center"><input type="submit" value="Log In" class="btn_login"></div>
             <div class="text-center">
