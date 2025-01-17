@@ -98,6 +98,7 @@
                                     <button class="btn btn-danger btn-sm delete-btn"
                                             data-lang-code="{{ $language->lang_code }}"
                                             data-key="{{ $key }}"> <i class="bi bi-trash"></i></button>
+
                                 </td>
                             </tr>
 
