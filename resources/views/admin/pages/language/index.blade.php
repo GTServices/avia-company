@@ -74,7 +74,7 @@
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
-                            <form action="{{ route('admin.languages.destroy', $language->id) }}" method="POST" style="display: inline-block; margin: 0;">
+                            <form class="delete-form" action="{{ route('admin.languages.destroy', $language->id) }}" method="POST" style="display: inline-block; margin: 0;">
                                 @csrf
                                 @method('DELETE')
                                 <button class="delete-btn" type="button" style="padding: 5px 10px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">
