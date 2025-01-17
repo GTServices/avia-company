@@ -27,7 +27,7 @@
     <!--end breadcrumb-->
 
     <!-- Search Form -->
-    <form method="GET" action="{{ route('admin.languages.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('admin.translates.index') }}" class="mb-4">
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Search by key or value" value="{{ $searchQuery }}">
             <button class="btn btn-primary" type="submit">Search</button>
