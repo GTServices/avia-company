@@ -80,6 +80,15 @@ class TranslateController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
+
     //apis
     public function updateTranslation(Request $request)
     {
@@ -108,6 +117,39 @@ class TranslateController extends Controller
         return response()->json(['success' => false, 'message' => 'Language file not found.'], 404);
     }
 
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'key' => 'required|string',
+        ]);
 
+        $key = $request->input('key');
+
+        // Bütün dilləri al
+        $languages = $this->languageRepository->all();
+
+        $deletedInAny = false; // Ən az bir faylda silinib-silinmədiyini yoxlamaq üçün
+
+        foreach ($languages as $language) {
+            $langCode = $language->lang_code;
+            $filePath = resource_path("lang/{$langCode}.json");
+
+            if (file_exists($filePath)) {
+                $translations = json_decode(file_get_contents($filePath), true);
+
+                if (isset($translations[$key])) {
+                    unset($translations[$key]); // Açarı sil
+                    file_put_contents($filePath, json_encode($translations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                    $deletedInAny = true; // Əgər hər hansı bir faylda açar silinərsə
+                }
+            }
+        }
+
+        if ($deletedInAny) {
+            return response()->json(['success' => true, 'message' => 'Translation deleted from all languages.']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Key not found in any language.'], 404);
+    }
 
 }

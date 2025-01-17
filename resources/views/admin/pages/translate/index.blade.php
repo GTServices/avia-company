@@ -29,10 +29,11 @@
     <!-- Search Form -->
     <form method="GET" action="{{ route('admin.translates.index') }}" class="mb-4">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search by key or value" value="{{ $searchQuery }}">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <input type="text" name="search" class="form-control" placeholder="Поиск по ключу или значению" value="{{ $searchQuery }}">
+            <button class="btn btn-primary" type="submit">Искать</button>
         </div>
     </form>
+
 
     <!-- Tabs -->
     <ul class="nav nav-tabs mb-3">
@@ -54,9 +55,10 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>Key</th>
-                            <th>Value</th>
+                            <th>Ключ</th>
+                            <th>Значение</th>
                         </tr>
+
                         </thead>
                         <tbody>
                         @foreach($filteredTranslations[$language->lang_code] as $key => $value)
@@ -66,6 +68,11 @@
                                     class="editable"
                                     data-lang-code="{{ $language->lang_code }}"
                                     data-key="{{ $key }}">{{ $value }}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm delete-btn"
+                                            data-lang-code="{{ $language->lang_code }}"
+                                            data-key="{{ $key }}"> <i class="bi bi-trash"></i></button>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -87,7 +94,14 @@
                                     class="editable"
                                     data-lang-code="{{ $language->lang_code }}"
                                     data-key="{{ $key }}">{{ $value }}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm delete-btn"
+                                            data-lang-code="{{ $language->lang_code }}"
+                                            data-key="{{ $key }}"> <i class="bi bi-trash"></i></button>
+                                </td>
                             </tr>
+
+
                         @endforeach
                         </tbody>
                     </table>
@@ -105,6 +119,59 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const langCode = this.getAttribute('data-lang-code');
+                    const key = this.getAttribute('data-key');
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "This translation will be deleted!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch('{{ route('admin.translations.destroy') }}', {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({ lang_code: langCode, key: key })
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        Swal.fire(
+                                            'Deleted!',
+                                            'Translation has been deleted.',
+                                            'success'
+                                        );
+                                        location.reload(); // Yeniləyin
+                                    } else {
+                                        Swal.fire(
+                                            'Error!',
+                                            data.message || 'An error occurred.',
+                                            'error'
+                                        );
+                                    }
+                                })
+                                .catch(error => {
+                                    Swal.fire(
+                                        'Error!',
+                                        'Unable to delete the translation. Please try again.',
+                                        'error'
+                                    );
+                                });
+                        }
+                    });
+                });
+            });
             const editableElements = document.querySelectorAll('.editable');
 
             editableElements.forEach(element => {
