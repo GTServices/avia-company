@@ -48,7 +48,7 @@
                     <tr data-id="{{ $language->id }}">
                         <td style="padding: 10px;">{{ $key + 1 }}</td>
                         <td style="padding: 10px;">
-                            <input type="checkbox" style="margin: 0; padding: 0;" data-id="{{ $language->id }}">
+                            <input class="form-check-input" type="checkbox" style="margin: 0; padding: 0;" data-id="{{ $language->id }}">
                         </td>
                         <td style="padding: 10px;">{{ $language->lang_name }}</td>
                         <td style="padding: 10px;">{{ $language->lang_code }}</td>
