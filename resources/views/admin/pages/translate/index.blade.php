@@ -50,6 +50,7 @@
         @foreach($languages as $language)
             <div class="tab-pane fade {{ $language->lang_code === 'ru' ? 'show active' : '' }}" id="tab-{{ $language->lang_code }}">
                 @if($searchQuery && !empty($filteredTranslations[$language->lang_code]))
+                    <!-- Axtarış Nəticələri -->
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -61,12 +62,16 @@
                         @foreach($filteredTranslations[$language->lang_code] as $key => $value)
                             <tr>
                                 <td>{{ $key }}</td>
-                                <td>{{ $value }}</td>
+                                <td contenteditable="true"
+                                    class="editable"
+                                    data-lang-code="{{ $language->lang_code }}"
+                                    data-key="{{ $key }}">{{ $value }}</td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 @elseif(!$searchQuery && !empty($translationsByLanguage[$language->lang_code]))
+                    <!-- Ümumi Tərcümələr -->
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -78,7 +83,10 @@
                         @foreach($translationsByLanguage[$language->lang_code] as $key => $value)
                             <tr>
                                 <td>{{ $key }}</td>
-                                <td>{{ $value }}</td>
+                                <td contenteditable="true"
+                                    class="editable"
+                                    data-lang-code="{{ $language->lang_code }}"
+                                    data-key="{{ $key }}">{{ $value }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -89,6 +97,7 @@
             </div>
         @endforeach
     </div>
+
 
 @endsection
 
