@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,9 +38,12 @@ class Language extends Model
                 }
             }
 
-            // JSON faylının adını dəyiş
+            // JSON faylının adını dəyiş və yeni faylı yarad
             if ($model->isDirty('lang_code')) {
                 static::renameJsonFile($model->getOriginal('lang_code'), $model->lang_code);
+
+                // Əgər yeni fayl mövcud deyilsə, onu yarad
+                static::createJsonFile($model->lang_code);
             }
         });
 
