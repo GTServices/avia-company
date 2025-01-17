@@ -19,7 +19,7 @@
                     <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                    <a class="dropdown-item" href="{{ route('admin.languages.create') }}">Создать язык</a>
+                    <a class="dropdown-item" href="{{ route('admin.languages.create') }}">Добавить язык</a>
                 </div>
             </div>
         </div>
@@ -75,6 +75,23 @@
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // Array to store selected IDs
+        let selectedIds = [];
+
+        // Handle checkbox change
+        document.querySelectorAll('.form-check-input').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const id = this.dataset.id;
+                if (this.checked) {
+                    if (!selectedIds.includes(id)) {
+                        selectedIds.push(id);
+                    }
+                } else {
+                    selectedIds = selectedIds.filter(item => item !== id);
+                }
+                console.log('Selected IDs:', selectedIds);
+            });
+        });
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const form = this.closest('.delete-form');
