@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
@@ -31,5 +30,16 @@ abstract class AbstractRepository
         }
 
         return $query->get();
+    }
+
+    /**
+     * Get a record by ID.
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function getById($id)
+    {
+        return $this->model->findOrFail($id);
     }
 }

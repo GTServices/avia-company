@@ -18,7 +18,6 @@ class LanguageRequest extends FormRequest
             'site_lang_code' => 'required|string|max:10',
             'is_main' => 'required|boolean',
             'lang_name' => 'required|string|max:255',
-            'site_name' => 'required|string|max:255',
         ];
     }
 
@@ -36,9 +35,6 @@ class LanguageRequest extends FormRequest
             'lang_name.required' => 'Поле "Название языка" обязательно для заполнения.',
             'lang_name.string' => 'Поле "Название языка" должно быть строкой.',
             'lang_name.max' => 'Поле "Название языка" не должно превышать 255 символов.',
-            'site_name.required' => 'Поле "Название сайта" обязательно для заполнения.',
-            'site_name.string' => 'Поле "Название сайта" должно быть строкой.',
-            'site_name.max' => 'Поле "Название сайта" не должно превышать 255 символов.',
         ];
     }
 }
