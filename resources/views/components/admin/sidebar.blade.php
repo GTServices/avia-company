@@ -23,7 +23,8 @@
                 <ul>
                     <li><a href="{{route("admin.languages.index")}}"><i class="material-icons-outlined">arrow_right</i>Языки</a>
                     </li>
-
+                    <li><a href="{{route("admin.translates.index")}}"><i class="material-icons-outlined">arrow_right</i>Словарь</a>
+                    </li>
                 </ul>
             </li>
 

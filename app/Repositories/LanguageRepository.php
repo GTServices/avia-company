@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Language;
-
+use Illuminate\Support\Facades\File;
  class LanguageRepository extends AbstractRepository
 {
     protected $model;
@@ -12,4 +12,16 @@ use App\Models\Language;
     {
         $this->model = $model;
     }
+
+     public function getTranslations(string $langCode): array
+     {
+         $filePath = resource_path("lang/{$langCode}.json");
+
+         if (File::exists($filePath)) {
+             return json_decode(File::get($filePath), true) ?? [];
+         }
+
+         return [];
+     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LanguageRequest extends FormRequest
 {
@@ -14,7 +15,12 @@ class LanguageRequest extends FormRequest
     public function rules()
     {
         return [
-            'lang_code' => 'required|string|max:10',
+            'lang_code' => [
+                'required',
+                'string',
+                'max:10',
+                Rule::unique('languages', 'lang_code')->ignore($this->route('language')),
+            ],
             'site_lang_code' => 'required|string|max:10',
             'is_main' => 'required|boolean',
             'lang_name' => 'required|string|max:255',
@@ -24,6 +30,7 @@ class LanguageRequest extends FormRequest
     public function messages()
     {
         return [
+            'lang_code.unique' => 'Язык с таким кодом уже существует.', // unique qaydası üçün mesaj
             'lang_code.required' => 'Поле "Код языка" обязательно для заполнения.',
             'lang_code.string' => 'Поле "Код языка" должно быть строкой.',
             'lang_code.max' => 'Поле "Код языка" не должно превышать 10 символов.',

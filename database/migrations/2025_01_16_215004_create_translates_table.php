@@ -1,43 +1,36 @@
 <?php
 
-namespace App\Models;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Language extends Model
+class CreateTranslatesTable extends Migration
 {
-    use HasFactory;
-
-    protected $guarded = [];
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('translates', function (Blueprint $table) {
+            $table->id();
+            $table->string('lang_code')->nullable();
+            $table->string('site_lang_code')->nullable();
+            $table->boolean('is_main')->default(false);
+            $table->string('lang_name')->nullable();
+            $table->string('site_name')->nullable();
+            $table->timestamps();
+        });
+    }
 
     /**
-     * Boot method to handle is_main updates.
+     * Reverse the migrations.
+     *
+     * @return void
      */
-    protected static function boot()
+    public function down()
     {
-        parent::boot();
-
-        // Handle the is_main field on creating
-        static::creating(function ($model) {
-            if ($model->is_main) {
-                // Reset other is_main records to false
-                static::where('is_main', true)->update(['is_main' => false]);
-            }
-        });
-
-        // Handle the is_main field on updating
-        static::updating(function ($model) {
-            if ($model->is_main) {
-                // Reset other is_main records to false
-                static::where('is_main', true)->where('id', '!=', $model->id)->update(['is_main' => false]);
-            } elseif (!$model->is_main && static::where('is_main', true)->doesntExist()) {
-                // If no other record has is_main, set one randomly
-                $randomLanguage = static::where('id', '!=', $model->id)->first();
-                if ($randomLanguage) {
-                    $randomLanguage->update(['is_main' => true]);
-                }
-            }
-        });
+        Schema::dropIfExists('translates');
     }
 }
