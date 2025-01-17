@@ -80,6 +80,7 @@
                                 <button class="delete-btn" type="button" style="padding: 5px 10px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">
                                     <i class="bi bi-trash"></i>
                                 </button>
+
                             </form>
                         </td>
                     </tr>
