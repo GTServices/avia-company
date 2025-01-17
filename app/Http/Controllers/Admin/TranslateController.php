@@ -29,11 +29,14 @@ class TranslateController extends Controller
 
         // Axtarış məntiqi
         if ($searchQuery) {
+            $filteredTranslations = [];
             foreach ($translationsByLanguage as $langCode => $translations) {
                 foreach ($translations as $key => $value) {
                     if (stripos($key, $searchQuery) !== false || stripos($value, $searchQuery) !== false) {
-                        $filteredTranslations = [$key => $value];
-                        break 2;
+                        if (!isset($filteredTranslations[$langCode])) {
+                            $filteredTranslations[$langCode] = [];
+                        }
+                        $filteredTranslations[$langCode][$key] = $value;
                     }
                 }
             }
@@ -46,6 +49,7 @@ class TranslateController extends Controller
             'searchQuery'
         ));
     }
+
 
     public function create()
     {
