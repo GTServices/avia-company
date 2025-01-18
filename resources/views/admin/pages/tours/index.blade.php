@@ -24,6 +24,13 @@
                     <li>
                         <button class="dropdown-item" id="delete-selected-btn">Удалить выбранные</button>
                     </li>
+                    <li>
+                        <form class="p-2" action="{{ route('admin.tours.index') }}" method="GET" style="margin-bottom: 20px;">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Введите для поиска..." value="{{ request('search') }}">
+                            </div>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>

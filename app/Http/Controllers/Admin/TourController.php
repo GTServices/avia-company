@@ -15,11 +15,13 @@ class TourController extends Controller
     {
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $tours = $this->tourRepository->all('datetime','asc');
-        return view('admin.pages.tours.index', compact('tours'));
+        $search = $request->input('search');
+        $tours = $this->tourRepository->search($search, 'datetime', 'asc');
+        return view('admin.pages.tours.index', compact('tours', 'search'));
     }
+
 
     public function create()
     {
