@@ -99,6 +99,7 @@
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        alert()
         // Use a global variable if not already declared
         if (typeof selectedIds === 'undefined') {
             var selectedIds = [];
