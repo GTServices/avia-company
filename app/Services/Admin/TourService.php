@@ -29,10 +29,16 @@ class TourService
             return ['errors' => $validator->errors()];
         }
 
-        // Handle image upload
         $tourData = [];
+
+        // Handle image upload with automatic directory creation
         if ($request->hasFile('img')) {
-            $imagePath = $this->imageService->optimizeAndStore($request->file('img'), 'tours');
+            $directory = 'public/tours';
+            if (!\Storage::exists($directory)) {
+                \Storage::makeDirectory($directory); // Create the directory
+            }
+
+            $imagePath = $this->imageService->optimizeAndStore($request->file('img'), $directory);
             $tourData['img'] = $imagePath;
         }
 
@@ -57,6 +63,7 @@ class TourService
 
         return ['success' => true, 'tour' => $tour];
     }
+
 
     public function updateTour(Request $request, Tour $tour)
     {
