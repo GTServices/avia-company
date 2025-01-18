@@ -53,7 +53,7 @@ class TranslateController extends Controller
 
     public function create()
     {
-        $languages = $this->languageRepository->all();
+        $languages = $this->languageRepository->all('order');
 
         return view('admin.pages.translate.create', compact('languages'));
     }
@@ -126,7 +126,7 @@ class TranslateController extends Controller
         $key = $request->input('key');
 
         // Bütün dilləri al
-        $languages = $this->languageRepository->all();
+        $languages = $this->languageRepository->all('order');
 
         $deletedInAny = false; // Ən az bir faylda silinib-silinmədiyini yoxlamaq üçün
 
