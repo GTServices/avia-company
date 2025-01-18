@@ -20,10 +20,15 @@ class TourService
         // Validate the request
         $validator = Validator::make($request->all(), [
             'price' => 'required|numeric',
+            'stock_count' => 'required|integer|min:0',
         ], [
             'price.required' => 'Поле "Цена" обязательно для заполнения.',
             'price.numeric' => 'Поле "Цена" должно быть числом.',
+            'stock_count.required' => 'Поле "Количество" обязательно для заполнения.',
+            'stock_count.integer' => 'Поле "Количество" должно быть целым числом.',
+            'stock_count.min' => 'Поле "Количество" не может быть отрицательным.',
         ]);
+
 
         if ($validator->fails()) {
             return ['errors' => $validator->errors()];
@@ -71,10 +76,15 @@ class TourService
         // Validate the request
         $validator = Validator::make($request->all(), [
             'price' => 'required|numeric',
+            'stock_count' => 'required|integer|min:0',
         ], [
             'price.required' => 'Поле "Цена" обязательно для заполнения.',
             'price.numeric' => 'Поле "Цена" должно быть числом.',
+            'stock_count.required' => 'Поле "Количество" обязательно для заполнения.',
+            'stock_count.integer' => 'Поле "Количество" должно быть целым числом.',
+            'stock_count.min' => 'Поле "Количество" не может быть отрицательным.',
         ]);
+
 
         if ($validator->fails()) {
             return ['errors' => $validator->errors()];

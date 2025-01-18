@@ -32,6 +32,15 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="stock_count" class="form-label">Количество</label>
+            <input type="number" name="stock_count" id="stock_count" class="form-control"
+                   value="{{ old('stock_count', $tour->stock_count) }}"
+                   placeholder="Введите количество" required>
+            @error('stock_count')
+            <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </div>
         <!-- Поле для даты и времени -->
         <div class="mb-3">
             <label for="datetime" class="form-label">Дата и время</label>
