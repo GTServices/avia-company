@@ -23,7 +23,7 @@ class TourController extends Controller
 
     public function create()
     {
-        $languages = $this->languageRepository->all();
+        $languages = $this->languageRepository->all('order');
         return view('admin.pages.tours.create', compact('languages'));
     }
 
@@ -40,7 +40,7 @@ class TourController extends Controller
 
     public function edit(Tour $tour)
     {
-        $languages = $this->languageRepository->all();
+        $languages = $this->languageRepository->all('order');
         return view('admin.pages.tours.edit', compact('tour', 'languages'));
     }
 
