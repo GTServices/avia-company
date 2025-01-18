@@ -9,8 +9,15 @@ class ImageService
         // Create a unique file name
         $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
 
-        // Set the storage path
+        // Set the storage path (use relative path for the folder)
+        $folder = trim($folder, '/'); // Ensure no leading/trailing slashes
         $path = storage_path("app/public/{$folder}/{$fileName}");
+
+        // Create the directory if it doesn't exist
+        $directory = storage_path("app/public/{$folder}");
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
 
         // Open the image file
         $imgData = file_get_contents($image->getRealPath());
@@ -23,6 +30,7 @@ class ImageService
 
         return "{$folder}/{$fileName}";
     }
+
 
     private function optimizeImage($data, $extension)
     {
