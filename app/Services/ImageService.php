@@ -4,24 +4,20 @@ namespace App\Services;
 
 class ImageService
 {
-    public function optimizeAndStore($image, $folder)
+    public function optimizeAndStore($file, $directory)
     {
-        // Create a unique file name
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        // Fayl adı təyin edilir
+        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-        // Set the storage path
-        $path = storage_path("app/public/{$folder}/{$fileName}");
+        // Fayl optimallaşdırılır
+        $optimizedImage = $this->optimizeImage($file);
 
-        // Open the image file
-        $imgData = file_get_contents($image->getRealPath());
+        // Faylı `Storage` vasitəsilə saxlayın
+        $path = $directory . '/' . $fileName;
+        \Storage::put($path, $optimizedImage);
 
-        // Minify and optimize
-        $optimizedImage = $this->optimizeImage($imgData, $image->getClientOriginalExtension());
-
-        // Store the optimized image
-        file_put_contents($path, $optimizedImage);
-
-        return "{$folder}/{$fileName}";
+        // Faylın nisbətən qısa yolunu qaytarın
+        return 'storage/' . $path;
     }
 
     private function optimizeImage($data, $extension)
