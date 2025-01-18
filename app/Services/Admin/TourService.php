@@ -34,8 +34,9 @@ class TourService
         // Handle image upload with automatic directory creation
         if ($request->hasFile('img')) {
             $directory = 'public/tours';
-            dd($directory);
+
             if (!\Storage::exists($directory)) {
+                dd($directory);
                 \Storage::makeDirectory($directory); // Create the directory
             }
 
