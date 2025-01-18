@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
 
-
 @section("content")
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -29,7 +28,7 @@
 
     <div class="card">
         <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-            <table style="width: 100%; min-width: 900px; border-collapse: collapse; margin-bottom: 0;">
+            <table id="languages-table" style="width: 100%; min-width: 900px; border-collapse: collapse; margin-bottom: 0;">
                 <thead style="background-color: #343a40; color: white;">
                 <tr>
                     <th scope="col" style="padding: 10px; text-align: left;">#</th>
@@ -72,14 +71,12 @@
                             <a href="{{ route('admin.languages.edit', $language->id) }}" style="text-decoration: none; padding: 5px 10px; background-color: #0d6efd; color: white; border-radius: 4px; display: inline-block;">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-
                             <form class="delete-form" action="{{ route('admin.languages.destroy', $language->id) }}" method="POST" style="display: inline-block; margin: 0;">
                                 @csrf
                                 @method('DELETE')
                                 <button class="delete-btn" type="button" style="padding: 5px 10px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">
                                     <i class="bi bi-trash"></i>
                                 </button>
-
                             </form>
                         </td>
                     </tr>
@@ -87,10 +84,8 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 @endsection
-
 
 
 
@@ -99,106 +94,17 @@
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        alert()
-        // Use a global variable if not already declared
-        if (typeof selectedIds === 'undefined') {
-            var selectedIds = [];
-        }
-
-        // Handle checkbox change
-        document.querySelectorAll('.form-check-input').forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                const id = this.dataset.id;
-                if (this.checked) {
-                    if (!selectedIds.includes(id)) {
-                        selectedIds.push(id);
-                    }
-                } else {
-                    selectedIds = selectedIds.filter(item => item !== id);
-                }
-                console.log('Selected IDs:', selectedIds);
-            });
-        });
-
-        // Handle individual delete button click
-        document.querySelectorAll('.delete-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                const form = this.closest('.delete-form');
-                Swal.fire({
-                    title: 'Вы уверены?',
-                    text: "Это действие нельзя отменить!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Да, удалить!',
-                    cancelButtonText: 'Отмена'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-            });
-        });
-
-        // Handle bulk delete button click
-        if (typeof deleteSelectedButton === 'undefined') {
-            var deleteSelectedButton = document.getElementById('delete-selected-btn');
-        }
-        if (deleteSelectedButton) {
-            deleteSelectedButton.addEventListener('click', function () {
-                if (selectedIds.length === 0) {
-                    Swal.fire('Внимание', 'Выберите хотя бы один язык для удаления.', 'warning');
-                    return;
-                }
-
-                Swal.fire({
-                    title: 'Вы уверены?',
-                    text: "Это действие нельзя отменить!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Да, удалить!',
-                    cancelButtonText: 'Отмена'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        fetch("{{ route('admin.delete_languages') }}", {
-                            method: "POST",
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: JSON.stringify({ selected_ids: selectedIds })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    Swal.fire('Успех', 'Выбранные языки успешно удалены!', 'success').then(() => {
-                                        location.reload();
-                                    });
-                                } else {
-                                    Swal.fire('Ошибка', 'Произошла ошибка при удалении.', 'error');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Ошибка:', error);
-                                Swal.fire('Ошибка', 'Произошла ошибка при удалении.', 'error');
-                            });
-                    }
-                });
-            });
-        }
-
-        // Handle drag-and-drop reordering
         document.addEventListener('DOMContentLoaded', function () {
-            let table = document.getElementById('languages-table');
+            const tableBody = document.querySelector('#languages-table tbody');
+            const deleteSelectedButton = document.getElementById('delete-selected-btn');
+            let selectedIds = [];
 
-            if (table) {
-                new Sortable(table, {
+            // Initialize SortableJS on tbody
+            if (tableBody) {
+                new Sortable(tableBody, {
                     animation: 150,
                     onEnd: function (evt) {
-                        let order = Array.from(table.querySelectorAll('tr')).map(row => row.dataset.id);
+                        let order = Array.from(tableBody.querySelectorAll('tr')).map(row => row.dataset.id);
                         console.log('New Order:', order);
 
                         fetch("{{ route('admin.languages.reorder') }}", {
@@ -224,7 +130,90 @@
                     }
                 });
             }
+
+            // Handle checkbox change
+            document.querySelectorAll('.form-check-input').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const id = this.dataset.id;
+                    if (this.checked) {
+                        if (!selectedIds.includes(id)) {
+                            selectedIds.push(id);
+                        }
+                    } else {
+                        selectedIds = selectedIds.filter(item => item !== id);
+                    }
+                    console.log('Selected IDs:', selectedIds);
+                });
+            });
+
+            // Handle individual delete button click
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const form = this.closest('.delete-form');
+                    Swal.fire({
+                        title: 'Вы уверены?',
+                        text: "Это действие нельзя отменить!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Да, удалить!',
+                        cancelButtonText: 'Отмена'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+
+            // Handle bulk delete button click
+            if (deleteSelectedButton) {
+                deleteSelectedButton.addEventListener('click', function () {
+                    if (selectedIds.length === 0) {
+                        Swal.fire('Внимание', 'Выберите хотя бы один язык для удаления.', 'warning');
+                        return;
+                    }
+
+                    Swal.fire({
+                        title: 'Вы уверены?',
+                        text: "Это действие нельзя отменить!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Да, удалить!',
+                        cancelButtonText: 'Отмена'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch("{{ route('admin.delete_languages') }}", {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({ selected_ids: selectedIds })
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        Swal.fire('Успех', 'Выбранные языки успешно удалены!', 'success').then(() => {
+                                            location.reload();
+                                        });
+                                    } else {
+                                        Swal.fire('Ошибка', 'Произошла ошибка при удалении.', 'error');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Ошибка:', error);
+                                    Swal.fire('Ошибка', 'Произошла ошибка при удалении.', 'error');
+                                });
+                        }
+                    });
+                });
+            }
         });
+
     </script>
 @endpush
 
