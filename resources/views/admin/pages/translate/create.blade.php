@@ -47,6 +47,6 @@
 
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Add Translation</button>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 @endsection

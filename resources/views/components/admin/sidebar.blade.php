@@ -27,7 +27,17 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="material-icons-outlined">flight</i></div>
 
+                    <div class="menu-title">Туры и путешествия</div>
+                </a>
+                <ul>
+                    <li><a href="{{route("admin.tours.index")}}"><i class="material-icons-outlined">arrow_right</i>Туры</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <!--end navigation-->
     </div>

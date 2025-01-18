@@ -91,9 +91,7 @@
                             <label class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">
                                 <div class="d-md-flex d-grid align-items-center gap-3">
-                                    <button type="submit" class="btn btn-grd-primary px-4" style="color: white;">Отправить</button>
-                                    <button type="reset" class="btn btn-grd-royal px-4" style="color: white;">Сбросить</button>
-                                    <a href="{{ route('admin.languages.index') }}" class="btn btn-secondary px-4">Отмена</a>
+                                    <button type="submit" class="btn btn-primary">Сохранить</button>
                                 </div>
                             </div>
                         </div>

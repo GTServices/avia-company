@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class TranslateController extends Controller
 {
-    protected $languageRepository;
 
-    public function __construct(LanguageRepository $languageRepository)
+
+    public function __construct(private LanguageRepository $languageRepository)
     {
-        $this->languageRepository = $languageRepository;
+
     }
 
     public function index(Request $request)

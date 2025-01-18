@@ -14,15 +14,18 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <button type="button" class="btn btn-outline-primary">Settings</button>
-                <button type="button" class="btn btn-outline-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">
-                    <span class="visually-hidden">Toggle Dropdown</span>
+
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Действия
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                    <a class="dropdown-item" href="{{ route('admin.translates.create') }}">Добавить слово</a>
+                    <a class="dropdown-item" href="{{ route('admin.translates.create') }}">
+                         Добавить слово
+                    </a>
                 </div>
             </div>
         </div>
+
     </div>
     <!--end breadcrumb-->
 
