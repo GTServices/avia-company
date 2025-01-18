@@ -14,28 +14,33 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-
+                <!-- Dropdown Trigger -->
                 <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Действия
                 </button>
+                <!-- Dropdown Menu -->
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+                    <!-- Create Button -->
                     <a class="dropdown-item" href="{{ route('admin.translates.create') }}">
-                         Добавить слово
+                        Добавить слово
                     </a>
+                    <!-- Divider -->
+                    <div class="dropdown-divider"></div>
+                    <!-- Search Form -->
+                    <form method="GET" action="{{ route('admin.translates.index') }}" class="p-3">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Поиск по ключу или значению" value="{{ request('search') }}">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
+
     </div>
     <!--end breadcrumb-->
 
-    <!-- Search Form -->
-    <form method="GET" action="{{ route('admin.translates.index') }}" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Поиск по ключу или значению" value="{{ $searchQuery }}">
-            <button class="btn btn-primary" type="submit">Искать</button>
-        </div>
-    </form>
+
 
 
     <!-- Tabs -->
