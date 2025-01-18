@@ -37,7 +37,6 @@ class TourService
 
             // Qovluğun mövcudluğunu yoxlayın
             if (!is_dir($directory)) {
-                dd($directory);
                 mkdir($directory, 0755, true); // Qovluğu yaradın
             }
             $imagePath = $this->imageService->optimizeAndStore($request->file('img'), $directory);
