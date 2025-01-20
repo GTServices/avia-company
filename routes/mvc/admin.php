@@ -15,7 +15,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => [ 'admin']]
     Route::resource('/about_us', \App\Http\Controllers\Admin\AboutUsController::class)
         ->parameters(['about_us' => 'aboutUs'])
         ->except(['show']);
-    Route::get('/logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('logout');
 });
 
 // Login route without middleware

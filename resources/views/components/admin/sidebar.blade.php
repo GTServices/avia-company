@@ -58,9 +58,17 @@
                     </li>
                 </ul>
             <li>
-                <div class="parent-icon"><i class="material-icons-outlined">
-                        <a href="{{route("admin.logout")}}">Выход</a>
-                    </i></div>
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            <li>
+                <div class="parent-icon">
+                    <i class="material-icons-outlined">
+                        <a href="javascript:void(0);" id="logout-link">Выход</a>
+                    </i>
+                </div>
+            </li>
+
             </li>
             </li>
         </ul>
@@ -68,3 +76,29 @@
     </div>
 </aside>
 <!--end sidebar-->
+@push("scripts")
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+    document.getElementById('logout-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Вы уверены?',
+            text: "Вы хотите выйти из системы?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Да, выйти!',
+            cancelButtonText: 'Отмена'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Formu göndər
+                document.getElementById('logout-form').submit();
+            }
+        });
+    });
+
+</script>
+@endpush
