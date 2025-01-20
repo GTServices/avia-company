@@ -24,4 +24,4 @@
 <link href="{{asset('assets/admin/sass/semi-dark.css')}}" rel="stylesheet">
 <link href="{{asset('assets/admin/sass/bordered-theme.css')}}" rel="stylesheet">
 <link href="{{asset('assets/admin/sass/responsive.css')}}" rel="stylesheet">
-
+@stack('head')
