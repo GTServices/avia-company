@@ -24,7 +24,7 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="card-body text-center">
-                    <img src="{{ asset('assets/admin/assets/images/logo1.png') }}" class="mb-4" width="145" alt="Logo">
+                    <img src="{{ getLogoUrl() }}" class="mb-4" width="145" alt="Logo">
                     <h4 class="fw-bold">Добро пожаловать</h4>
                     <p class="mb-3">Введите свои данные для входа</p>
                     <form action="{{ route('admin.login') }}" method="POST" class="row g-3" novalidate>
