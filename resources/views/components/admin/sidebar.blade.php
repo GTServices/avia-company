@@ -22,6 +22,8 @@
                 <ul>
                     <li><a href="{{route("admin.about_us.edit", 1)}}"><i class="material-icons-outlined">arrow_right</i>О нас</a>
                     </li>
+                    <li><a href="{{route("admin.company_info.edit", 1)}}"><i class="material-icons-outlined">arrow_right</i>Информация о компании</a>
+                    </li>
                     <li><a href="{{route("admin.user_rules.edit", 1)}}"><i class="material-icons-outlined">arrow_right</i>Правила пользователя</a>
                     </li>
                     <li><a href="{{route("admin.privacy_policies.edit", 1)}}"><i class="material-icons-outlined">arrow_right</i>Политика конфиденциальности</a>

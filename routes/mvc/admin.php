@@ -12,6 +12,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => [ 'admin']]
     Route::resource('/transfers', \App\Http\Controllers\Admin\TransferController::class)->except(['show']);
     Route::resource('/user_rules', \App\Http\Controllers\Admin\UserRuleController::class)->except(['show']);
     Route::resource('/privacy_policies', \App\Http\Controllers\Admin\PrivacyPolicyController::class)->except(['show']);
+    Route::resource('/company_info', \App\Http\Controllers\Admin\CompanyInfoController::class)->except(['show']);
     Route::resource('/about_us', \App\Http\Controllers\Admin\AboutUsController::class)
         ->parameters(['about_us' => 'aboutUs'])
         ->except(['show']);
