@@ -57,6 +57,11 @@
                     <li><a href="{{route("admin.transfers.index")}}"><i class="material-icons-outlined">arrow_right</i>Трансферы</a>
                     </li>
                 </ul>
+            <li>
+                <div class="parent-icon"><i class="material-icons-outlined">
+                        <a href="{{route("admin.logout")}}">Выход</a>
+                    </i></div>
+            </li>
             </li>
         </ul>
         <!--end navigation-->

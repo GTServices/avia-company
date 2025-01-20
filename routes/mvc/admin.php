@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => [ 'admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/languages', \App\Http\Controllers\Admin\LanguageController::class)->except(['show']);
     Route::resource('/translates', \App\Http\Controllers\Admin\TranslateController::class)->except(['show']);
@@ -15,7 +15,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('/about_us', \App\Http\Controllers\Admin\AboutUsController::class)
         ->parameters(['about_us' => 'aboutUs'])
         ->except(['show']);
-    Route::post('/logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('/logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('logout');
 });
 
 // Login route without middleware
