@@ -94,6 +94,6 @@ class CompanyInfoController extends Controller
         $companyInfo->fill($validated);
         $companyInfo->save();
 
-        return redirect()->route('admin.company_info.edit')->with('success', 'Информация о компании успешно обновлена.');
+        return redirect()->back()->with('success', 'Информация о компании успешно обновлена.');
     }
 }
