@@ -58,14 +58,13 @@
                     </li>
                     <li><a href="{{route("admin.transfers.index")}}"><i class="material-icons-outlined">arrow_right</i>Трансферы</a>
                     </li>
-                    <li>
-                        <i class="material-icons-outlined">arrow_right</i>
-                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    <li>
-                </ul>
 
+                </ul>
+            <li>
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            <li>
                 <div class="parent-icon">
                     <i class="material-icons-outlined">
                         <a href="javascript:void(0);" id="logout-link">Выход</a>
