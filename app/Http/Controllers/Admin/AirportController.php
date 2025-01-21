@@ -40,10 +40,11 @@ class AirportController extends Controller
 
     public function edit($id)
     {
+        $languages = $this->languageRepository->all('order', 'asc');
         $airport = $this->airportService->getAirportById($id);
         $cities = $this->airportService->getAllCities();
 
-        return view('admin.pages.airports.edit', compact('airport', 'cities'));
+        return view('admin.pages.airports.edit', compact('airport', 'cities', 'languages'));
     }
 
     public function update(AirportRequest $request, $id)
