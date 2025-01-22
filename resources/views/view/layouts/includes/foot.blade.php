@@ -37,4 +37,4 @@
     });
 </script>
 
-
+@stack('scripts')
