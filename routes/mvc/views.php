@@ -25,7 +25,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::group(['prefix' => '', 'as' => 'view.'], function () {
 
         // General Pages
-        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::get('/', function () {
+            return redirect(LaravelLocalization::getLocalizedURL(LaravelLocalization::getDefaultLocale()));
+        });
         Route::get(__('contact'), [ContactController::class, 'index'])->name('contact');
         Route::get(__('wish_list'), [WishListController::class, 'index'])->name('wishlist');
         Route::get(__('about'), [\App\Http\Controllers\Views\AboutController::class, 'index'])->name('about');
