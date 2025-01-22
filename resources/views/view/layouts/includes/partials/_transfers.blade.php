@@ -28,7 +28,7 @@
                 <div class="price_list">
                     <div>
                         <sup>$</sup>{{ $transfer->price }}<small>*{{__("Per person")}}</small>
-                        <p><a href="" class="btn_1">{{__("Details")}}</a></p>
+                        <p><a href="{{route("view.transfers.view", ['id' => $transfer->id, 'slug' => \Illuminate\Support\Str::slug($transfer->title)])}}" class="btn_1">{{__("Details")}}</a></p>
                     </div>
                 </div>
             </div>

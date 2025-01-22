@@ -21,7 +21,7 @@ class TransferController extends Controller
 
     public function view($id, $slug)
     {
-        $tour = $this->transferRepository->getById($id);
-        return view('view.pages.transfers.view');
+        $transfer = $this->transferRepository->getById($id);
+        return view('view.pages.transfers.view', compact('transfer'));
     }
 }

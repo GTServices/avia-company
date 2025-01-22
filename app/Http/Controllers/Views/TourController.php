@@ -21,6 +21,6 @@ class TourController extends Controller
     public function view($id, $slug)
     {
         $tour = $this->tourRepository->getById($id);
-        return view('view.pages.tours.view', compact('id'));
+        return view('view.pages.tours.view', compact('tour'));
     }
 }
