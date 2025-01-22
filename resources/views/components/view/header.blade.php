@@ -55,6 +55,9 @@
                             <a href="{{route("view.home")}}"> {{__("Home")}} </a>
                         </li>
                         <li>
+                            <a href="{{route("view.about")}}"> {{__("About")}} </a>
+                        </li>
+                        <li>
                             <a href="{{route("view.tours")}}" class="show-submenu">{{__("Tours")}}</a>
                         </li>
 

@@ -26,6 +26,13 @@
                     <li>
                         <a href="{{route("view.contact")}}" class="show-submenu">{{__("Contact")}}</a>
                     </li>
+
+                    <li>
+                        <a href="{{route("view.privacy_policy")}}" class="show-submenu">{{__("Privacy policy")}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route("view.terms_of_use")}}" class="show-submenu">{{__("Terms of use")}}</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-2">
