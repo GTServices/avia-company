@@ -13,10 +13,14 @@ use App\Http\Controllers\Views\{
     TourController,
     TransferController,
     WishListController
-
 };
-use Illuminate\Support\Facades\Lang;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+// Redirect to default locale if no language is present in the URL
+Route::get('/', function () {
+    $defaultLocale = LaravelLocalization::getDefaultLocale(); // Get the default language from the config
+    return redirect(LaravelLocalization::getLocalizedURL($defaultLocale));
+});
 
 // Localized Routes
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
