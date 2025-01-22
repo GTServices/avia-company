@@ -33,16 +33,16 @@
                                 <input type="hidden" name="code" value="{{ $code }}">
 
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Enter new password" required>
+                                    <label>{{__("Password")}}</label>
+                                    <input type="password" class="form-control" name="password" placeholder="{{__("Enter new password")}}" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Confirm Password</label>
-                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm new password" required>
+                                    <label>{{__("Confirm new password")}}</label>
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="{{__("Confirm new password")}}" required>
                                 </div>
 
-                                <button type="submit" class="btn_full">Reset Password</button>
+                                <button type="submit" class="btn_full">{{__("Reset Password")}}</button>
                             </form>
                         </div>
                     </div>

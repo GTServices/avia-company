@@ -47,18 +47,18 @@
                             <form method="POST" action="{{ route('view.auth.login') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    <label>{{__("Email")}}</label>
+                                    <input type="email" name="email" class="form-control" placeholder="{{__("Email")}}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                    <label>{{__("Password")}}</label>
+                                    <input type="password" name="password" class="form-control" placeholder=">{{__("Password")}}" required>
                                 </div>
                                 <p class="small">
-                                    <a href="{{ route('view.auth.password.forgot') }}">Forgot Password?</a>
+                                    <a href="{{ route('view.auth.password.forgot') }}">{{__("Forgot Password?")}}</a>
                                 </p>
-                                <button type="submit" class="btn_full">Sign in</button>
-                                <a href="{{ route('view.auth.register') }}" class="btn_full_outline">Register</a>
+                                <button type="submit" class="btn_full">{{__("Sign in")}}</button>
+                                <a href="{{ route('view.auth.register') }}" class="btn_full_outline">{{__("Register")}}</a>
                             </form>
                         </div>
                     </div>

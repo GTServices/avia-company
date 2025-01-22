@@ -34,11 +34,11 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required>
+                                    <label>{{__("Email")}}</label>
+                                    <input type="email" name="email" class="form-control" placeholder="{{__("Email")}}" value="{{ old('email') }}" required>
                                 </div>
 
-                                <button type="submit" class="btn_full">Send Password Reset Code</button>
+                                <button type="submit" class="btn_full">{{__("Send Password Reset Code")}}</button>
                             </form>
                         </div>
                     </div>

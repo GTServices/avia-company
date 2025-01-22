@@ -29,31 +29,31 @@
                             <form action="{{ route('view.auth.register') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name">
+                                    <label>{{__("Name")}} <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="{{__("Name")}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                                    <label>{{__("Email")}} <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{__("Email")}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="Phone (Optional)">
+                                    <label>{{__("Phone")}}</label>
+                                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="{{__("Phone")}} ({{__("Optional")}})">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Password <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                    <label>{{__("Password")}} <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="password" placeholder="{{__("Password")}}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Confirm Password <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+                                    <label>{{__("Confirm Password")}} <span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="{{__("Confirm Password")}}">
                                 </div>
 
-                                <button type="submit" class="btn_full">Create an account</button>
+                                <button type="submit" class="btn_full">{{__("Create an account")}}</button>
                             </form>
                         </div>
                     </div>
