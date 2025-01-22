@@ -24,6 +24,7 @@ Route::group(['prefix' => '', 'as' => 'view.'], function () {
     Route::get('/about', [\App\Http\Controllers\Views\AboutController::class, 'index'])->name('about');
     Route::get('/privacy-policy', [\App\Http\Controllers\Views\PrivacyPolicyController::class, 'index'])->name('privacy_policy');
     Route::get('/terms-of-use', [\App\Http\Controllers\Views\TermsOfUseController::class, 'index'])->name('terms_of_use');
+    Route::get('/logout', [\App\Http\Controllers\Views\LogoutController::class, 'logout'])->name('auth.logout');
 
     // Tours Routes
     Route::group([], function () {
