@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Views\{
     Auth\LoginController,
     Auth\RegisterController,
@@ -12,51 +13,58 @@ use App\Http\Controllers\Views\{
     TourController,
     TransferController,
     WishListController
+
 };
+use Illuminate\Support\Facades\Lang;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-// Frontend Routes Group
-Route::group(['prefix' => '', 'as' => 'view.'], function () {
+// Localized Routes
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
-    // Ümumi Səhifələr
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-    Route::get('/wish-list', [WishListController::class, 'index'])->name('wishlist');
-    Route::get('/about', [\App\Http\Controllers\Views\AboutController::class, 'index'])->name('about');
-    Route::get('/privacy-policy', [\App\Http\Controllers\Views\PrivacyPolicyController::class, 'index'])->name('privacy_policy');
-    Route::get('/terms-of-use', [\App\Http\Controllers\Views\TermsOfUseController::class, 'index'])->name('terms_of_use');
-    Route::get('/logout', [\App\Http\Controllers\Views\LogoutController::class, 'logout'])->name('auth.logout');
+    // Frontend Routes Group
+    Route::group(['prefix' => '', 'as' => 'view.'], function () {
 
-    // Tours Routes
-    Route::group([], function () {
-        Route::get('/tours', [TourController::class, 'index'])->name('tours');
-        Route::get('/tours/{id}/{slug}', [TourController::class, 'view'])->name('tours.view');
-    });
+        // General Pages
+        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::get(__('contact'), [ContactController::class, 'index'])->name('contact');
+        Route::get(__('wish_list'), [WishListController::class, 'index'])->name('wishlist');
+        Route::get(__('about'), [\App\Http\Controllers\Views\AboutController::class, 'index'])->name('about');
+        Route::get(__('privacy_policy'), [\App\Http\Controllers\Views\PrivacyPolicyController::class, 'index'])->name('privacy_policy');
+        Route::get(__('terms_of_use'), [\App\Http\Controllers\Views\TermsOfUseController::class, 'index'])->name('terms_of_use');
+        Route::get(__('logout'), [\App\Http\Controllers\Views\LogoutController::class, 'logout'])->name('auth.logout');
 
-    // Transfers Routes
-    Route::group([], function () {
-        Route::get('/transfers', [TransferController::class, 'index'])->name('transfers');
-        Route::get('/transfers/{id}/{slug}', [TransferController::class, 'view'])->name('transfers.view');
-    });
+        // Tours Routes
+        Route::group([], function () {
+            Route::get(__('tours'), [TourController::class, 'index'])->name('tours');
+            Route::get(__('tour_details') . '/{id}/{slug}', [TourController::class, 'view'])->name('tours.view');
+        });
 
-    // Authentication Routes
-    Route::group(['prefix' => '', 'as' => 'auth.'], function () {
-        // Registration
-        Route::get('/register', [RegisterController::class, 'index'])->name('register');
-        Route::post('/register', [RegisterController::class, 'register'])->name('register');
+        // Transfers Routes
+        Route::group([], function () {
+            Route::get(__('transfers'), [TransferController::class, 'index'])->name('transfers');
+            Route::get(__('transfer_details') . '/{id}/{slug}', [TransferController::class, 'view'])->name('transfers.view');
+        });
 
-        // Login
-        Route::get('/login', [LoginController::class, 'index'])->name('login');
-        Route::post('/login', [LoginController::class, 'login'])->name('login');
+        // Authentication Routes
+        Route::group(['prefix' => '', 'as' => 'auth.'], function () {
+            // Registration
+            Route::get(__('register'), [RegisterController::class, 'index'])->name('register');
+            Route::post(__('register'), [RegisterController::class, 'register'])->name('register');
 
-        // Email Verification
-        Route::get('/verify-email/{token}', [VerifyController::class, 'verify'])->name('verify.email');
+            // Login
+            Route::get(__('login'), [LoginController::class, 'index'])->name('login');
+            Route::post(__('login'), [LoginController::class, 'login'])->name('login');
 
-        // Forgot Password
-        Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.forgot');
-        Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.send_reset_request');
+            // Email Verification
+            Route::get(__('verify_email') . '/{token}', [VerifyController::class, 'verify'])->name('verify.email');
 
-        // Reset Password
-        Route::get('/reset-password/{email}/{code}', [ResetPasswordController::class, 'index'])->name('password.reset');
-        Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.reset_password');
+            // Forgot Password
+            Route::get(__('forgot_password'), [ForgotPasswordController::class, 'index'])->name('password.forgot');
+            Route::post(__('forgot_password'), [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.send_reset_request');
+
+            // Reset Password
+            Route::get(__('reset_password') . '/{email}/{code}', [ResetPasswordController::class, 'index'])->name('password.reset');
+            Route::post(__('reset_password'), [ResetPasswordController::class, 'reset'])->name('password.reset_password');
+        });
     });
 });
