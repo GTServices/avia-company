@@ -18,10 +18,10 @@
                             @if(Auth::check())
                                 <!-- Daxil olmuş istifadəçi üçün -->
                                 <li>
-                                    <a href="" id="account_link">{{ __("Hesabım") }}</a>
+                                    <a href="" id="access_link">{{ __("Hesabım") }}</a>
                                 </li>
                                 <li>
-                                    <a href="" id="logout_link">{{ __("Çıxış") }}</a>
+                                    <a href="" id="wishlist_link">{{ __("Çıxış") }}</a>
                                 </li>
                             @else
                                 <!-- Daxil olmayan istifadəçi üçün -->
