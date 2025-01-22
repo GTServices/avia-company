@@ -15,12 +15,27 @@
                 <div class="col-6">
                     <ul id="top_links">
                         @if(Auth::check())
-                            <li><a href="" id="access_link">{{__("Profile")}}</a></li>
-                            <li><a href="" id="wishlist_link">{{__("Logout")}}</a></li>
+                            <li>
+                                <a href="" id="access_link">{{ __("Profile") }}</a>
+                            </li>
+                            <li>
+                                <a href="" id="wishlist_link"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __("Logout") }}
+                                </a>
+                                <form id="logout-form" action="{" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         @else
-                            <li><a href="#sign-in-dialog" id="access_link">{{__("Sign in")}}</a></li>
-                            <li><a href="wishlist.html" id="wishlist_link">{{__("Wishlist")}}</a></li>
+                            <li>
+                                <a href="#sign-in-dialog" id="access_link">{{ __("Sign in") }}</a>
+                            </li>
+                            <li>
+                                <a href="wishlist.html" id="wishlist_link">{{ __("Wishlist") }}</a>
+                            </li>
                         @endif
+
                         <li id="lang_top">
                             <i class="icon-globe-1"></i>
                             @foreach($languages as $language)
