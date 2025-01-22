@@ -63,7 +63,10 @@
             <label for="socials[youtube]" class="form-label">YouTube</label>
             <input type="url" name="youtube" id="socials[youtube]" class="form-control" value="{{ $companyInfo->youtube ?? '' }}">
         </div>
-
+        <div class="mb-3">
+            <label for="map" class="form-label">Ссылка карты</label>
+            <textarea class="form-control" rows="3" name="map" id="map">{{ $companyInfo->map ?? '' }}</textarea>
+        </div>
         <!-- Address Translations -->
         <h5 class="mt-4">Адрес (многоязычный)</h5>
         <ul class="nav nav-tabs mb-3">
