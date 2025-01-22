@@ -14,26 +14,11 @@
 
                 <div class="col-6">
                     <ul id="top_links">
-                        <ul>
-                            @if(Auth::check())
-                                <!-- Daxil olmuş istifadəçi üçün -->
-                                <li>
-                                    <a href="" id="access_link">{{ __("Hesabım") }}</a>
-                                </li>
-                                <li>
-                                    <a href="" id="wishlist_link">{{ __("Çıxış") }}</a>
-                                </li>
-                            @else
-                                <!-- Daxil olmayan istifadəçi üçün -->
-                                <li>
-                                    <a href="#sign-in-dialog" id="access_link">{{ __("Daxil ol") }}</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html" id="wishlist_link">{{ __("Sevimlilər") }}</a>
-                                </li>
-                            @endif
-                        </ul>
-
+                        @if(Auth::check())
+                        @else
+                            <li><a href="#sign-in-dialog" id="access_link">{{__("Sign in")}}</a></li>
+                            <li><a href="wishlist.html" id="wishlist_link">{{__("Wishlist")}}</a></li>
+                        @endif
                         <li id="lang_top">
                             <i class="icon-globe-1"></i>
                             @foreach($languages as $language)
