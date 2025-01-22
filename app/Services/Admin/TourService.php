@@ -20,13 +20,13 @@ class TourService
         // Validate the request
         $validator = Validator::make($request->all(), [
             'price' => 'required|numeric',
-            'stock_count' => 'required|integer|min:0',
+            'biletstockcount' => 'required|integer|min:0',
         ], [
             'price.required' => 'Поле "Цена" обязательно для заполнения.',
             'price.numeric' => 'Поле "Цена" должно быть числом.',
-            'stock_count.required' => 'Поле "Количество" обязательно для заполнения.',
-            'stock_count.integer' => 'Поле "Количество" должно быть целым числом.',
-            'stock_count.min' => 'Поле "Количество" не может быть отрицательным.',
+            'biletstockcount .required' => 'Поле "Количество" обязательно для заполнения.',
+            'biletstockcount.integer' => 'Поле "Количество" должно быть целым числом.',
+            'biletstockcount.min' => 'Поле "Количество" не может быть отрицательным.',
         ]);
 
 
@@ -76,13 +76,13 @@ class TourService
         // Validate the request
         $validator = Validator::make($request->all(), [
             'price' => 'required|numeric',
-            'stock_count' => 'required|integer|min:0',
+            'biletstockcount' => 'required|integer|min:0',
         ], [
             'price.required' => 'Поле "Цена" обязательно для заполнения.',
             'price.numeric' => 'Поле "Цена" должно быть числом.',
-            'stock_count.required' => 'Поле "Количество" обязательно для заполнения.',
-            'stock_count.integer' => 'Поле "Количество" должно быть целым числом.',
-            'stock_count.min' => 'Поле "Количество" не может быть отрицательным.',
+            'biletstockcount.required' => 'Поле "Количество" обязательно для заполнения.',
+            'biletstockcount.integer' => 'Поле "Количество" должно быть целым числом.',
+            'biletstockcount.min' => 'Поле "Количество" не может быть отрицательным.',
         ]);
 
 

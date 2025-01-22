@@ -63,35 +63,20 @@ class CompanyInfoController extends Controller
 
     public function update(Request $request)
     {
-        $validated = $request->validate([
-            'favicon' => 'nullable|image',
-            'image' => 'nullable|image',
-            'email' => 'nullable|email',
-            'phone' => 'nullable|string|max:20',
-            'email_2' => 'nullable|email',
-            'phone_2' => 'nullable|string|max:20',
-            'address' => 'nullable|array',
-            'address.*' => 'nullable|string',
-            'instagram' => 'nullable|url',
-            'whatsapp' => 'nullable|url',
-            'facebook' => 'nullable|url',
-            'twitter' => 'nullable|url',
-            'youtube' => 'nullable|url',
-            'copyright_text' => 'nullable|array',
-            'copyright_text.*' => 'nullable|string',
-        ]);
+
+        $data = $request->all();
 
         $companyInfo = CompanyInfo::firstOrNew([]);
 
         if ($request->hasFile('favicon')) {
-            $validated['favicon'] = $request->file('favicon')->store('company_info', 'public');
+            $data['favicon'] = $request->file('favicon')->store('company_info', 'public');
         }
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('company_info', 'public');
+            $data['image'] = $request->file('image')->store('company_info', 'public');
         }
 
-        $companyInfo->fill($validated);
+        $companyInfo->fill($data);
         $companyInfo->save();
 
         return redirect()->back()->with('success', 'Информация о компании успешно обновлена.');

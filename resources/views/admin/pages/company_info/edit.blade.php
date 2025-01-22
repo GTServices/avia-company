@@ -5,7 +5,7 @@
         <div class="breadcrumb-title pe-3">Редактировать информацию о компании</div>
     </div>
 
-    <form method="POST" action="{{ route('admin.company_info.update', $companyInfo->id) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.company_info.update', $companyInfo->id) }}" enctype="multipart/form-data" novalidate>
         @csrf
         @method('PUT')
 
@@ -28,34 +28,40 @@
             <label for="email" class="form-label">Электронная почта</label>
             <input type="email" name="email" id="email" class="form-control" value="{{ $companyInfo->email }}">
         </div>
-
+        <div class="mb-3">
+            <label for="email_2" class="form-label">Электронная почта 2</label>
+            <input type="email" name="email_2" id="email_2" class="form-control" value="{{ $companyInfo->email_2 }}">
+        </div>
         <!-- Phone -->
         <div class="mb-3">
             <label for="phone" class="form-label">Телефон</label>
             <input type="text" name="phone" id="phone" class="form-control" value="{{ $companyInfo->phone }}">
         </div>
-
+        <div class="mb-3">
+            <label for="phone_2" class="form-label">Телефон 2</label>
+            <input type="text" name="phone_2" id="phone_2" class="form-control" value="{{ $companyInfo->phone_2 }}">
+        </div>
         <!-- Social Media Links -->
         <h5 class="mt-4">Социальные сети</h5>
         <div class="mb-3">
             <label for="socials[instagram]" class="form-label">Instagram</label>
-            <input type="url" name="instagram" id="socials[instagram]" class="form-control" value="{{ $companyInfo->socials['instagram'] ?? '' }}">
+            <input type="url" name="instagram" id="socials[instagram]" class="form-control" value="{{ $companyInfo->instagram ?? '' }}">
         </div>
         <div class="mb-3">
             <label for="socials[facebook]" class="form-label">Facebook</label>
-            <input type="url" name="facebook" id="socials[facebook]" class="form-control" value="{{ $companyInfo->socials['facebook'] ?? '' }}">
+            <input type="url" name="facebook" id="socials[facebook]" class="form-control" value="{{ $companyInfo->facebook ?? '' }}">
         </div>
         <div class="mb-3">
             <label for="socials[whatsapp]" class="form-label">WhatsApp</label>
-            <input type="url" name="whatsapp" id="socials[whatsapp]" class="form-control" value="{{ $companyInfo->socials['whatsapp'] ?? '' }}">
+            <input type="url" name="whatsapp" id="socials[whatsapp]" class="form-control" value="{{ $companyInfo->whatsapp ?? '' }}">
         </div>
         <div class="mb-3">
             <label for="socials[x]" class="form-label">Twitter</label>
-            <input type="url" name="x" id="socials[x]" class="form-control" value="{{ $companyInfo->socials['x'] ?? '' }}">
+            <input type="url" name="x" id="socials[x]" class="form-control" value="{{ $companyInfo->x ?? '' }}">
         </div>
         <div class="mb-3">
             <label for="socials[youtube]" class="form-label">YouTube</label>
-            <input type="url" name="youtube" id="socials[youtube]" class="form-control" value="{{ $companyInfo->socials['youtube'] ?? '' }}">
+            <input type="url" name="youtube" id="socials[youtube]" class="form-control" value="{{ $companyInfo->youtube ?? '' }}">
         </div>
 
         <!-- Address Translations -->

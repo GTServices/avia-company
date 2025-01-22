@@ -39,4 +39,10 @@ if (!function_exists('getLogoUrl')) {
         // Əgər logo yoxdursa, default dəyər qaytar
         return asset('assets/admin/assets/images/default-favicon.png'); // Default logo şəkili
     }
+
+
+    function getImage($img)
+    {
+        return \Illuminate\Support\Facades\Storage::url($img);
+    }
 }

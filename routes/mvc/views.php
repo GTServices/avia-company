@@ -25,13 +25,13 @@ Route::group(['prefix' => '', 'as' => 'view.'], function () {
     // Tours Routes
     Route::group([], function () {
         Route::get('/tours', [TourController::class, 'index'])->name('tours');
-        Route::get('/tours/one', [TourController::class, 'view'])->name('tours.view');
+        Route::get('/tours/{id}/{slug}', [TourController::class, 'view'])->name('tours.view');
     });
 
     // Transfers Routes
     Route::group([], function () {
         Route::get('/transfers', [TransferController::class, 'index'])->name('transfers');
-        Route::get('/transfers/one', [TransferController::class, 'view'])->name('transfers.view');
+        Route::get('/transfers/{id}/{slug}', [TransferController::class, 'view'])->name('transfers.view');
     });
 
     // Authentication Routes

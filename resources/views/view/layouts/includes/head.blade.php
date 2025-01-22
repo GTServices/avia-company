@@ -5,11 +5,8 @@
 <title>CITY TOURS - City tours and travel site template by Ansonika</title>
 
 <!-- Favicons -->
-<link rel="shortcut icon" href="{{ asset('assets/view/img/favicon.ico') }}" type="image/x-icon">
-<link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/view/img/apple-touch-icon-57x57-precomposed.png') }}">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/view/img/apple-touch-icon-72x72-precomposed.png') }}">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('assets/view/img/apple-touch-icon-114x114-precomposed.png') }}">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('assets/view/img/apple-touch-icon-144x144-precomposed.png') }}">
+<link rel="shortcut icon" href="{{ getImage($companyInfo->favicon) }}" type="image/x-icon">
+
 
 <!-- GOOGLE WEB FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">

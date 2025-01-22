@@ -33,11 +33,11 @@
         </div>
 
         <div class="mb-3">
-            <label for="stock_count" class="form-label">Количество</label>
-            <input type="number" name="stock_count" id="stock_count" class="form-control"
-                   value="{{ old('stock_count', $tour->stock_count) }}"
+            <label for="biletstockcount" class="form-label">Количество</label>
+            <input type="number" name="biletstockcount" id="biletstockcount" class="form-control"
+                   value="{{ old('biletstockcount', $tour->biletstockcount) }}"
                    placeholder="Введите количество" required>
-            @error('stock_count')
+            @error('biletstockcount')
             <div class="text-danger mt-1">{{ $message }}</div>
             @enderror
         </div>

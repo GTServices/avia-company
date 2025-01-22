@@ -27,13 +27,19 @@
             <label for="email" class="form-label">Электронная почта</label>
             <input type="email" name="email" id="email" class="form-control">
         </div>
-
+        <div class="mb-3">
+            <label for="email_2" class="form-label">Электронная почта 2</label>
+            <input type="email" name="email_2" id="email_2" class="form-control">
+        </div>
         <!-- Phone -->
         <div class="mb-3">
             <label for="phone" class="form-label">Телефон</label>
             <input type="text" name="phone" id="phone" class="form-control">
         </div>
-
+        <div class="mb-3">
+            <label for="phone_2" class="form-label">Телефон 2</label>
+            <input type="text" name="phone_2" id="phone_2" class="form-control">
+        </div>
         <!-- Social Media Links -->
         <h5 class="mt-4">Социальные сети</h5>
         <div class="mb-3">

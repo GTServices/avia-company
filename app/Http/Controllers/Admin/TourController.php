@@ -48,6 +48,7 @@ class TourController extends Controller
 
     public function update(Request $request, Tour $tour)
     {
+        $tour->biletstockcount = $request->biletstockcount;
         $response = $this->tourService->updateTour($request, $tour);
 
         if (isset($response['errors'])) {

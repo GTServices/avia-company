@@ -42,4 +42,10 @@ abstract class AbstractRepository
     {
         return $this->model->findOrFail($id);
     }
+
+
+    public function count()
+    {
+        return  $this->model::count();
+    }
 }

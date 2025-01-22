@@ -3,8 +3,8 @@
     <section class="parallax-window" data-parallax="scroll" data-image-src="img/parallax_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
         <div class="parallax-content-1 opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
             <div class="animated fadeInDown">
-                <h1>Paris tours</h1>
-                <p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+                <h1>{{__("Tours page title")}}</h1>
+                <p>{{__("Tours page sub title")}}</p>
             </div>
         </div>
     </section>
@@ -14,11 +14,10 @@
         <div id="position">
             <div class="container">
                 <ul>
-                    <li><a href="#">Home</a>
+                    <li><a href="{{route("view.home")}}">{{__("Home")}}</a>
                     </li>
-                    <li><a href="#">Category</a>
+                    <li><a >{{__("Tours")}}</a>
                     </li>
-                    <li>Page active</li>
                 </ul>
             </div>
         </div>
@@ -39,231 +38,27 @@
                             <div class="col-md-3 col-sm-4">
                                 <div class="styled-select-filters">
                                     <select name="sort_price" id="sort_price">
-                                        <option value="" selected="">Sort by price</option>
-                                        <option value="lower">Lowest price</option>
-                                        <option value="higher">Highest price</option>
+                                        <option value="" selected="">{{ __("Sort by price") }}</option>
+                                        <option value="lower">{{ __("Lowest price") }}</option>
+                                        <option value="higher">{{ __("Highest price") }}</option>
+
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-4 d-none d-sm-block text-end">
-                                <a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="all_tours_list.html" class="bt_filters"><i class=" icon-list"></i></a>
-                            </div>
+
                         </div>
                     </div>
                     <!--End tools -->
 
                     <div class="cardGrid">
-
-                        <!--    one Card   StarT    -->
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_13.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--	one Card   END   -->
-
-
-
-
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_12.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_11.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_14.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_4.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_8.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
-                            <div class="tour_container">
-                                <div class="img_container">
-                                    <a href="single_tour.html">
-                                        <img src="img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="Image">
-                                        <div class="short_info">
-                                            <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="tour_title">
-                                    <h3><strong>Arc Triomphe</strong> tour</h3>
-
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @include('view.layouts.includes.partials._tours')
                     </div>
 
 
 
 
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><span class="page-link">1</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    @include('view.layouts.includes.partials._pagination', ['paginator' => $tours])
+
                     <!-- end pagination-->
 
                 </div>

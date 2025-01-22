@@ -34,8 +34,8 @@
     </div>
     <div class="mb-3">
         <label for="stock_count" class="form-label">Количество</label>
-        <input type="number" name="stock_count" id="stock_count" class="form-control" placeholder="Введите количество" required>
-        @error('stock_count')
+        <input type="number" name="biletstockcount" id="biletstockcount" class="form-control" placeholder="Введите количество" required>
+        @error('biletstockcount')
         <div class="text-danger mt-1">{{ $message }}</div>
         @enderror
     </div>
