@@ -16,7 +16,11 @@
                     <ul id="top_links">
                         @if(Auth::check())
                             <li><a href="" id="user_link"><i style="font-size: 16px" class="fas fa-user-circle"></i> {{__("Profile")}}</a></li>
-                            <li><a href="{{route("view.auth.logout")}}" id="access_link">{{__("Logout")}}</a></li>
+                            <li>
+                                <a href="javascript:void(0);" id="logout_link">
+                                    {{ __("Logout") }}
+                                </a>
+                            </li>
                         @else
                             <li><a href="#sign-in-dialog" id="access_link">{{__("Sign in")}}</a></li>
                             <li><a href="wishlist.html" id="wishlist_link">{{__("Wishlist")}}</a></li>
@@ -109,3 +113,31 @@
         </div>
     </div><!-- container -->
 </header><!-- End Header -->
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const logoutLink = document.getElementById('logout_link');
+
+            logoutLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default action
+
+                Swal.fire({
+                    title: '{{ __("Are you sure you want to log out?") }}',
+                    text: '{{ __("You will need to log in again to access your account.") }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '{{ __("Yes, log out!") }}',
+                    cancelButtonText: '{{ __("Cancel") }}',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to the logout route
+                        window.location.href = '{{ route('view.auth.logout') }}';
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
