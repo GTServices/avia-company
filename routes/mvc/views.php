@@ -31,7 +31,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         // General Pages
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get(__('contact'), [ContactController::class, 'index'])->name('contact');
-        Route::get(__('wish_list'), [WishListController::class, 'index'])->name('wishlist');
+        Route::get(__('wishlist'), [WishListController::class, 'index'])->name('wishlist');
         Route::get(__('about'), [\App\Http\Controllers\Views\AboutController::class, 'index'])->name('about');
         Route::get(__('privacy_policy'), [\App\Http\Controllers\Views\PrivacyPolicyController::class, 'index'])->name('privacy_policy');
         Route::get(__('terms_of_use'), [\App\Http\Controllers\Views\TermsOfUseController::class, 'index'])->name('terms_of_use');

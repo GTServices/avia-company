@@ -16,7 +16,7 @@
                     <ul id="top_links">
                         @if(Auth::check())
                         <li><a href="" id="user_link"><i style="font-size: 16px" class="fas fa-user-circle"></i> {{__("Profile")}}</a></li>
-                        <li><a href="wishlist.html" id="wishlist_link">{{__("Wishlist")}}</a></li>
+                        <li><a href="{{route("view.wishlist")}}" id="wishlist_link">{{__("Wishlist")}}</a></li>
                         <li>
                             <a href="javascript:void(0);" id="logout_link">
                                 {{ __("Logout") }}

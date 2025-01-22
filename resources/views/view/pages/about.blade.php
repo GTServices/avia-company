@@ -4,7 +4,7 @@
         <div class="parallax-content-1 opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
             <div class="animated fadeInDown">
                 <h1>{{__("About page title")}}</h1>
-                <p>{{__("About page sub title")}}</p>
+                <p>{{__("About page subtitle")}}</p>
             </div>
         </div>
     </section>

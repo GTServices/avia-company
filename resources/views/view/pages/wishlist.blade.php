@@ -1,10 +1,10 @@
 @extends('view.layouts.app')
 @section('content')
-    <section class="parallax-window" data-parallax="scroll" data-image-src="img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="img/header_bg.jpg" data-natural-width="1400" data-natural-height="470">
         <div class="parallax-content-1 opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
             <div class="animated fadeInDown">
-                <h1>Your wishlist</h1>
-                <p>Cursus neque cursus curae ante scelerisque vehicula.</p>
+                <h1>{{__("Wishlist page title")}}</h1>
+                <p>{{__("Wishlist page subtitle")}}</p>
             </div>
         </div>
     </section>
@@ -14,167 +14,22 @@
         <div id="position">
             <div class="container">
                 <ul>
-                    <li><a href="#">Home</a>
+                    <li><a href="{{route("view.home")}}">{{__("Home")}}</a>
                     </li>
-                    <li><a href="#">Category</a>
+                    <li><a >{{__("Wishlist")}}</a>
                     </li>
-                    <li>Page active</li>
                 </ul>
             </div>
         </div>
         <!-- Position -->
 
-        <div class="collapse" id="collapseMap">
-            <div id="map" class="map"></div>
-        </div>
-        <!-- End Map -->
 
         <div class="container margin_60">
 
             <div class="row">
-                <aside class="col-lg-3">
-                    <p>
-                        <a class="btn_map" data-bs-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-                    </p>
 
-                    <div id="filters_col">
-                        <a data-bs-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
-                        <div class="collapse show" id="collapseFilters">
-                            <div class="filter_type">
-                                <h6>Price</h6>
-                                <ul>
-                                    <li>
-                                        <label class="container_radio">
-                                            From $10 to $50
-                                            <input type="radio" checked="checked" name="prices">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_radio">
-                                            From $50 to $80
-                                            <input type="radio" name="prices">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_radio">
-                                            From $80 to $100
-                                            <input type="radio" name="prices">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="filter_type">
-                                <h6>Rating</h6>
-                                <ul>
-                                    <li>
-                                        <label class="container_check">
-                                            <span class="rating">
-                                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
-                                            </span>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">
-                                            <span class="rating">
-                                               <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
-                                            </span>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">
-                                            <span class="rating">
-                                               <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                            </span>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">
-                                            <span class="rating">
-                                              <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                            </span>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">
-                                            <span class="rating">
-                                             <i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                            </span>
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="filter_type">
-                                <h6>Type</h6>
-                                <ul class="mb-0">
-                                    <li>
-                                        <label class="container_check">
-                                            City tours
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">
-                                            Hotels
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="container_check">
-                                            Transfers
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--End collapse -->
-                    </div>
-                    <!--End filters col-->
-                    <div class="box_style_2">
-                        <i class="icon_set_1_icon-57"></i>
-                        <h4>Need <span>Help?</span></h4>
-                        <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                        <small>Monday to Friday 9.00am - 7.30pm</small>
-                    </div>
-                </aside>
                 <!--End aside -->
-                <div class="col-lg-9">
-
-                    <div id="tools">
-                        <div class="row justify-content-between">
-                            <div class="col-md-3 col-sm-4 col-12">
-                                <div class="styled-select-filters">
-                                    <select name="sort_price" id="sort_price">
-                                        <option value="" selected="">Sort by price</option>
-                                        <option value="lower">Lowest price</option>
-                                        <option value="higher">Highest price</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-4 d-none d-sm-block text-end">
-                                <a href="all_tours_grid.html" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!--/tools -->
-
+                <div class="col-lg-12">
                     <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 position-relative">
