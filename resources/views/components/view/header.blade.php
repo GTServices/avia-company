@@ -14,8 +14,26 @@
 
                 <div class="col-6">
                     <ul id="top_links">
-                        <li><a href="#sign-in-dialog" id="access_link">{{__("Sign in")}}</a></li>
-                        <li><a href="wishlist.html" id="wishlist_link">{{__("Wishlist")}}</a></li>
+                        <ul>
+                            @if(Auth::check())
+                                <!-- Daxil olmuş istifadəçi üçün -->
+                                <li>
+                                    <a href="" id="account_link">{{ __("Hesabım") }}</a>
+                                </li>
+                                <li>
+                                    <a href="" id="logout_link">{{ __("Çıxış") }}</a>
+                                </li>
+                            @else
+                                <!-- Daxil olmayan istifadəçi üçün -->
+                                <li>
+                                    <a href="#sign-in-dialog" id="access_link">{{ __("Daxil ol") }}</a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" id="wishlist_link">{{ __("Sevimlilər") }}</a>
+                                </li>
+                            @endif
+                        </ul>
+
                         <li id="lang_top">
                             <i class="icon-globe-1"></i>
                             @foreach($languages as $language)
@@ -62,7 +80,7 @@
                         </li>
 
                         <li>
-                            <a href="{{route("view.transfers")}}" class="show-submenu">{{__("Tranfers")}}</a>
+                            <a href="{{route("view.transfers")}}" class="show-submenu">{{__("Transfers")}}</a>
                         </li>
 
                         <li>
