@@ -1,4 +1,7 @@
 @foreach($transfers as $transfer)
+    @if(empty($transfer->title))
+        @continue
+    @endif
     <!--one List Start -->
     <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
         <div class="row">
@@ -13,7 +16,7 @@
                     @endif
                 </div>
                 <div class="img_list">
-                    <a href="{{route("view.transfers.view", ['id' => $transfer->id, 'slug' => \Illuminate\Support\Str::slug($transfer->title)])}}">
+                    <a href="{{ route('view.transfers.view', ['id' => $transfer->id, 'slug' => \Illuminate\Support\Str::slug($transfer->title)]) }}">
                         <img src="{{ getImage($transfer->image) }}" alt="{{ $transfer->title }}">
                     </a>
                 </div>
@@ -27,8 +30,8 @@
             <div class="col-lg-2 col-md-2">
                 <div class="price_list">
                     <div>
-                        <sup>$</sup>{{ $transfer->price }}<small>*{{__("Per person")}}</small>
-                        <p><a href="{{route("view.transfers.view", ['id' => $transfer->id, 'slug' => \Illuminate\Support\Str::slug($transfer->title)])}}" class="btn_1">{{__("Details")}}</a></p>
+                        <sup>$</sup>{{ $transfer->price }}<small>*{{ __("Per person") }}</small>
+                        <p><a href="{{ route('view.transfers.view', ['id' => $transfer->id, 'slug' => \Illuminate\Support\Str::slug($transfer->title)]) }}" class="btn_1">{{ __("Details") }}</a></p>
                     </div>
                 </div>
             </div>
