@@ -27,16 +27,23 @@
         <div class="card-body">
             <!-- Upload Form -->
             <div class="mb-4">
-                <form id="upload-form" class="mb-4">
+                <form id="upload-form" action="{{ route('admin.tours.images.store', $tour->id) }}" method="POST" class="mb-4" enctype="multipart/form-data" onsubmit="return handleFormSubmit(event)">
                     @csrf
                     <div class="input-group">
-                        <input type="file" class="form-control" id="image-input" accept="image/*" multiple>
+                        <input type="file" name="images[]" class="form-control" id="image-input" 
+                               accept="image/jpeg,image/png,image/gif,image/webp" multiple required>
                         <button class="btn btn-primary" type="submit" id="upload-button">
-                            <i class="bi bi-upload"></i> Загрузить
+                            <i class="bi bi-upload"></i> Загрузить выбранные
                         </button>
                     </div>
                     <div class="form-text">
-                        Поддерживаемые форматы: JPG, PNG, GIF. Максимальный размер: 4MB
+                        Поддерживаемые форматы: JPG, PNG, GIF, WEBP. Максимальный размер: 4MB на файл
+                    </div>
+                    <div id="file-list" class="mt-2 mb-2"></div>
+                    <div id="upload-status" class="mt-2"></div>
+                    <div id="progress-container" class="progress mt-2" style="display: none;">
+                        <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" 
+                             role="progressbar" style="width: 0%"></div>
                     </div>
                 </form>
             </div>
@@ -48,15 +55,11 @@
                         <div class="card h-100">
                             <img src="{{ $image->image_url }}" class="card-img-top" alt="Tour image">
                             <div class="card-body p-2 text-center">
-                                <button type="button" class="btn btn-sm btn-danger delete-image" data-id="{{ $image->id }}">
+                                <button type="button" class="btn btn-sm btn-danger delete-image" 
+                                        data-id="{{ $image->id }}" 
+                                        data-url="{{ route('admin.tours.images.destroy', [$tour->id, $image->id]) }}">
                                     <i class="bi bi-trash"></i> Удалить
                                 </button>
-                                <div class="form-check form-switch mt-2">
-                                    <input class="form-check-input set-as-main" type="checkbox" 
-                                           data-id="{{ $image->id }}" 
-                                           {{ $image->is_main ? 'checked' : '' }}>
-                                    <label class="form-check-label">Главное</label>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,20 +84,79 @@
                     <button type="button" class="btn btn-danger" id="confirm-delete">Удалить</button>
                 </div>
             </div>
-        </div>
-    </div>
-
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                const tourId = {{ $tour->id }};
-                let imageToDelete = null;
-
-                // Initialize Sortable
+                // Show selected files
+                const fileInput = document.getElementById('image-input');
+                const fileList = document.getElementById('file-list');
+                
+                if (fileInput && fileList) {
+                    fileInput.addEventListener('change', function() {
+                        fileList.innerHTML = '';
+                        const files = Array.from(this.files);
+                        
+                        if (files.length === 0) {
+                            fileList.innerHTML = '<div class="text-muted">Файлы не выбраны</div>';
+                            return;
+                        }
+                        
+                        files.forEach((file) => {
+                            const fileItem = document.createElement('div');
+                            fileItem.className = 'd-flex justify-content-between align-items-center mb-1';
+                            fileItem.innerHTML = `
+                                <div class="text-truncate" style="max-width: 70%;" title="${file.name}">
+                                    <i class="bi bi-file-image"></i> ${file.name}
+                                </div>
+                                <div class="text-muted small">${formatFileSize(file.size)}</div>
+                            `;
+                            fileList.appendChild(fileItem);
+                        });
+                    });
+                }
+                
+                // Initialize Sortable for image reordering
                 const imagesContainer = document.getElementById('images-container');
-                new Sortable(imagesContainer, {
+                if (imagesContainer) {
+                    new Sortable(imagesContainer, {
+                        animation: 150,
+                        onEnd: function() {
+                            const order = [];
+                            document.querySelectorAll('.image-item').forEach((item, index) => {
+                                order.push({
+                                    id: item.dataset.id,
+                                    order: index + 1
+                                });
+                            });
+                            
+                            const form = document.createElement('form');
+                            form.method = 'POST';
+                            form.action = '{{ route('admin.tours.images.reorder', $tour->id) }}';
+                            form.innerHTML = `
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="images" value='${JSON.stringify(order)}'>
+                            `;
+                            document.body.appendChild(form);
+                            form.submit();
+                        }
+                    });
+                }
+                
+                // Format file size helper function
+                function formatFileSize(bytes) {
+                    if (bytes === 0) return '0 Bytes';
+                    const k = 1024;
+                    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                    const i = Math.floor(Math.log(bytes) / Math.log(k));
+                    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+                }
+            });
+
+            // Confirm delete
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.delete-image')) {
                     animation: 150,
                     onEnd: function() {
                         updateImageOrder();
@@ -207,18 +269,6 @@
                         }
                     });
                 });
-
-                // Update image order
-                function updateImageOrder() {
-                    const items = imagesContainer.querySelectorAll('.image-item');
-                    const orderData = Array.from(items).map((item, index) => ({
-                        id: item.dataset.id,
-                        order: index
-                    }));
-
-                    fetch(`/admin/tours/${tourId}/images/reorder`, {
-                        method: 'PUT',
-                        headers: {
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': csrfToken,
                             'Accept': 'application/json'
@@ -226,6 +276,7 @@
                         body: JSON.stringify({ images: orderData })
                     });
                 }
+                });
             });
         </script>
         <style>

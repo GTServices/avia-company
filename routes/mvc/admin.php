@@ -10,6 +10,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => [ 'admin']]
     
     // Tour Images Routes
     Route::prefix('tours/{tour}')->group(function () {
+        Route::get('/images', [\App\Http\Controllers\Admin\TourImageController::class, 'index'])->name('tours.images.index');
         Route::post('/images', [\App\Http\Controllers\Admin\TourImageController::class, 'store'])->name('tours.images.store');
         Route::put('/images/reorder', [\App\Http\Controllers\Admin\TourImageController::class, 'reorder'])->name('tours.images.reorder');
         Route::delete('/images/{imageId}', [\App\Http\Controllers\Admin\TourImageController::class, 'destroy'])->name('tours.images.destroy');
