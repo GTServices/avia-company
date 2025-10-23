@@ -72,8 +72,11 @@
                             @endif
                         </td>
                         <td style="padding: 10px;">
-                            <a href="{{ route('admin.tours.edit', $tour->id) }}" style="text-decoration: none; padding: 5px 10px; background-color: #0d6efd; color: white; border-radius: 4px; display: inline-block;">
+                            <a href="{{ route('admin.tours.edit', $tour->id) }}" style="text-decoration: none; padding: 5px 10px; background-color: #0d6efd; color: white; border-radius: 4px; display: inline-block; margin-right: 5px;">
                                 <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{{ route('admin.tours.images', $tour->id) }}" style="text-decoration: none; padding: 5px 10px; background-color: #6c757d; color: white; border-radius: 4px; display: inline-block; margin-right: 5px;" title="Управление изображениями">
+                                <i class="bi bi-images"></i>
                             </a>
                             <form class="delete-form" action="{{ route('admin.tours.destroy', $tour->id) }}" method="POST" style="display: inline-block; margin: 0;">
                                 @csrf

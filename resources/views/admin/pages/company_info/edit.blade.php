@@ -68,7 +68,7 @@
             <textarea class="form-control" rows="3" name="map" id="map">{{ $companyInfo->map ?? '' }}</textarea>
         </div>
         <!-- Address Translations -->
-        <h5 class="mt-4">Адрес (многоязычный)</h5>
+        <h5 class="mt-4">Адрес</h5>
         <ul class="nav nav-tabs mb-3">
             @foreach($languages as $language)
                 <li class="nav-item">
@@ -91,7 +91,7 @@
         </div>
 
         <!-- Copyright Text Translations -->
-        <h5 class="mt-4">Текст копирайта (многоязычный)</h5>
+        <h5 class="mt-4">Текст копирайта</h5>
         <ul class="nav nav-tabs mb-3">
             @foreach($languages as $language)
                 <li class="nav-item">

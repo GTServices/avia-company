@@ -2,111 +2,52 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 class ImageService
 {
     public function optimizeAndStore($image, $folder)
     {
-        // Create a unique file name
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $fileName = Str::uuid() . '.' . $image->getClientOriginalExtension();
+        $path = "{$folder}/{$fileName}";
 
-        // Set the storage path (use relative path for the folder)
-        $folder = trim($folder, '/'); // Ensure no leading/trailing slashes
-        $path = storage_path("app/public/{$folder}/{$fileName}");
-
-        // Create the directory if it doesn't exist
-        $directory = storage_path("app/public/{$folder}");
-        if (!is_dir($directory)) {
-            mkdir($directory, 0755, true);
-        }
-
-        // Open the image file
         $imgData = file_get_contents($image->getRealPath());
+        $optimized = $this->optimizeImage($imgData, $image->getClientOriginalExtension());
 
-        // Minify and optimize
-        $optimizedImage = $this->optimizeImage($imgData, $image->getClientOriginalExtension());
+        Storage::disk('public')->put($path, $optimized);
 
-        // Store the optimized image
-        file_put_contents($path, $optimizedImage);
-
-        return "{$folder}/{$fileName}";
+        return $path;
     }
-
 
     private function optimizeImage($data, $extension)
     {
-        switch (strtolower($extension)) {
-            case 'jpeg':
+        $extension = strtolower($extension);
+        $image = @imagecreatefromstring($data);
+        if (!$image) return $data;
+
+        ob_start();
+        switch ($extension) {
             case 'jpg':
-                return $this->optimizeJpeg($data);
+            case 'jpeg':
+                imagejpeg($image, null, 85);
+                break;
             case 'png':
-                return $this->optimizePng($data);
+                imagepng($image, null, 8);
+                break;
             case 'gif':
-                return $this->optimizeGif($data);
-            case 'bmp':
-                return $this->optimizeBmp($data);
+                imagegif($image);
+                break;
             case 'webp':
-                return $this->optimizeWebp($data);
-            case 'tiff':
-            case 'tif':
-                return $this->optimizeTiff($data);
+                imagewebp($image, null, 85);
+                break;
             default:
-                return $data; // If unsupported format, return as is
+                ob_end_clean();
+                imagedestroy($image);
+                return $data;
         }
-    }
-
-    private function optimizeJpeg($data)
-    {
-        $image = imagecreatefromstring($data);
-        ob_start();
-        imagejpeg($image, null, 85); // 85% quality
-        $optimizedData = ob_get_clean();
+        $out = ob_get_clean();
         imagedestroy($image);
-        return $optimizedData;
-    }
-
-    private function optimizePng($data)
-    {
-        $image = imagecreatefromstring($data);
-        ob_start();
-        imagepng($image, null, 8); // Compression level 8
-        $optimizedData = ob_get_clean();
-        imagedestroy($image);
-        return $optimizedData;
-    }
-
-    private function optimizeGif($data)
-    {
-        $image = imagecreatefromstring($data);
-        ob_start();
-        imagegif($image);
-        $optimizedData = ob_get_clean();
-        imagedestroy($image);
-        return $optimizedData;
-    }
-
-    private function optimizeBmp($data)
-    {
-        $image = imagecreatefromstring($data);
-        ob_start();
-        imagebmp($image);
-        $optimizedData = ob_get_clean();
-        imagedestroy($image);
-        return $optimizedData;
-    }
-
-    private function optimizeWebp($data)
-    {
-        $image = imagecreatefromstring($data);
-        ob_start();
-        imagewebp($image, null, 85); // 85% quality
-        $optimizedData = ob_get_clean();
-        imagedestroy($image);
-        return $optimizedData;
-    }
-
-    private function optimizeTiff($data)
-    {
-        // TIFF support is limited in GD, return the data as is
-        return $data;
+        return $out;
     }
 }

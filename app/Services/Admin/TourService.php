@@ -6,6 +6,7 @@ use App\Models\Tour;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class TourService
 {
@@ -13,101 +14,97 @@ class TourService
     {
     }
 
+   public function storeTour(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'title' => 'required|array',
+        'title.*' => 'required|string|max:255',
+        'desc' => 'required|array',
+        'desc.*' => 'required|string',
+        'price' => 'required|numeric|min:0',
+        'biletstockcount' => 'required|integer|min:0',
+        'datetime' => 'required|date',
+        'img' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
+    ]);
 
-
-    public function storeTour(Request $request)
-    {
-        // Validate the request
-        $validator = Validator::make($request->all(), [
-            'price' => 'required|numeric',
-            'biletstockcount' => 'required|integer|min:0',
-        ], [
-            'price.required' => 'Поле "Цена" обязательно для заполнения.',
-            'price.numeric' => 'Поле "Цена" должно быть числом.',
-            'biletstockcount .required' => 'Поле "Количество" обязательно для заполнения.',
-            'biletstockcount.integer' => 'Поле "Количество" должно быть целым числом.',
-            'biletstockcount.min' => 'Поле "Количество" не может быть отрицательным.',
-        ]);
-
-
-        if ($validator->fails()) {
-            return ['errors' => $validator->errors()];
-        }
-
-        $tourData = [];
-
-        // Handle image upload with automatic directory creation
-        if ($request->hasFile('img')) {
-            $directory = storage_path('app/public/tours');
-
-            // Qovluğun mövcudluğunu yoxlayın
-            if (!is_dir($directory)) {
-                mkdir($directory, 0755, true); // Qovluğu yaradın
-            }
-            $imagePath = $this->imageService->optimizeAndStore($request->file('img'), $directory);
-            $tourData['img'] = $imagePath;
-        }
-
-        // Set basic fields
-        $tourData['price'] = $request->input('price');
-        $tourData['datetime'] = $request->input('datetime');
-        $tourData['status'] = $request->has('status') ? 1 : 0;
-
-        // Create the tour
-        $tour = Tour::create($tourData);
-
-        // Save translations
-        foreach ($request->input('title') as $locale => $title) {
-            $tour->setTranslation('title', $locale, $title);
-        }
-
-        foreach ($request->input('desc') as $locale => $desc) {
-            $tour->setTranslation('desc', $locale, $desc);
-        }
-
-        $tour->save();
-
-        return ['success' => true, 'tour' => $tour];
+    if ($validator->fails()) {
+        return ['errors' => $validator->errors()];
     }
+
+    // 🔹 Əsas məlumatlar
+    $tourData = [
+        'price' => $request->input('price'),
+        'biletstockcount' => $request->input('biletstockcount'),
+        'datetime' => $request->input('datetime'),
+        'status' => $request->has('status') ? 1 : 0,
+        'title' => [], // 🧠 boş translatable sahələr
+        'desc'  => [],
+    ];
+
+    // 🔹 Şəkil varsa optimallaşdır və saxla
+    if ($request->hasFile('img')) {
+        $tourData['img'] = $this->imageService->optimizeAndStore($request->file('img'), 'tours');
+    }
+
+    // 🔹 Translatable datanı `create`-dən əvvəl birləşdir
+    foreach ($request->input('title') as $locale => $value) {
+        $tourData['title'][$locale] = $value;
+    }
+    foreach ($request->input('desc') as $locale => $value) {
+        $tourData['desc'][$locale] = $value;
+    }
+
+    // 🔹 Artıq `create()` birbaşa JSON kimi yazır (Spatie bunu avtomatik serialize edir)
+    $tour = Tour::create($tourData);
+
+    return ['success' => true, 'tour' => $tour];
+}
 
 
     public function updateTour(Request $request, Tour $tour)
     {
-        // Validate the request
-        $validator = Validator::make($request->all(), [
-            'price' => 'required|numeric',
-            'biletstockcount' => 'required|integer|min:0',
-        ], [
-            'price.required' => 'Поле "Цена" обязательно для заполнения.',
-            'price.numeric' => 'Поле "Цена" должно быть числом.',
-            'biletstockcount.required' => 'Поле "Количество" обязательно для заполнения.',
-            'biletstockcount.integer' => 'Поле "Количество" должно быть целым числом.',
-            'biletstockcount.min' => 'Поле "Количество" не может быть отрицательным.',
-        ]);
 
+        // 🔹 Validasiyalar
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|array',
+                'title.*' => 'required|string|max:255',
+                'desc' => 'required|array',
+                'desc.*' => 'required|string',
+                'price' => 'required|numeric|min:0',
+                'biletstockcount' => 'required|integer|min:0',
+                'datetime' => 'required|date',
+                'img' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
+                'status' => 'nullable',
+            ]
+        );
 
         if ($validator->fails()) {
             return ['errors' => $validator->errors()];
         }
 
-        // Handle image upload
+        // 🔹 Şəkil yenilənməsi
         if ($request->hasFile('img')) {
-            $imagePath = $this->imageService->optimizeAndStore($request->file('img'), 'tours');
-            $tour->img = $imagePath;
+            if ($tour->img && Storage::disk('public')->exists($tour->img)) {
+                Storage::disk('public')->delete($tour->img);
+            }
+
+            $tour->img = $this->imageService->optimizeAndStore($request->file('img'), 'tours');
         }
 
-        // Update basic fields
+        // 🔹 Əsas məlumatlar
         $tour->price = $request->input('price');
+        $tour->biletstockcount = $request->input('biletstockcount');
         $tour->datetime = $request->input('datetime');
         $tour->status = $request->has('status') ? 1 : 0;
-
-        // Update translations
-        foreach ($request->input('title') as $locale => $title) {
-            $tour->setTranslation('title', $locale, $title);
+        // 🔹 Tərcümələr
+        foreach ($request->input('title') as $locale => $value) {
+            $tour->setTranslation('title', $locale, $value);
         }
 
-        foreach ($request->input('desc') as $locale => $desc) {
-            $tour->setTranslation('desc', $locale, $desc);
+        foreach ($request->input('desc') as $locale => $value) {
+            $tour->setTranslation('desc', $locale, $value);
         }
 
         $tour->save();
@@ -119,8 +116,8 @@ class TourService
     {
         $tour = Tour::findOrFail($id);
 
-        if ($tour->img && \Storage::exists($tour->img)) {
-            \Storage::delete($tour->img);
+        if ($tour->img && Storage::disk('public')->exists($tour->img)) {
+            Storage::disk('public')->delete($tour->img);
         }
 
         $tour->delete();
@@ -133,8 +130,8 @@ class TourService
         $tours = Tour::whereIn('id', $ids)->get();
 
         foreach ($tours as $tour) {
-            if ($tour->img && \Storage::exists($tour->img)) {
-                \Storage::delete($tour->img);
+            if ($tour->img && Storage::disk('public')->exists($tour->img)) {
+                Storage::disk('public')->delete($tour->img);
             }
         }
 
