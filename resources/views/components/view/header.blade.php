@@ -74,9 +74,9 @@
                             <a href="{{route("view.tours")}}" class="show-submenu">{{__("Tours")}}</a>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <a href="{{route("view.transfers")}}" class="show-submenu">{{__("Transfers")}}</a>
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a href="{{route("view.contact")}}" class="show-submenu">{{__("Contact")}}</a>

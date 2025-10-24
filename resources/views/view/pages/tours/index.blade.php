@@ -38,10 +38,9 @@
                             <div class="col-md-3 col-sm-4">
                                 <div class="styled-select-filters">
                                     <select name="sort_price" id="sort_price">
-                                        <option value="" selected="">{{ __("Sort by price") }}</option>
-                                        <option value="lower">{{ __("Lowest price") }}</option>
-                                        <option value="higher">{{ __("Highest price") }}</option>
-
+                                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ __("Sort by price") }}</option>
+                                        <option value="lower" {{ request('sort') == 'price' && request('order') == 'asc' ? 'selected' : '' }}>{{ __("Lowest price") }}</option>
+                                        <option value="higher" {{ request('sort') == 'price' && request('order') == 'desc' ? 'selected' : '' }}>{{ __("Highest price") }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -70,3 +69,51 @@
     </main>
     <!-- End main -->
 @endsection
+
+@push('styles')
+<style>
+.card_description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 8px;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+</style>
+@endpush
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sortSelect = document.getElementById('sort_price');
+    
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+            const selectedValue = this.value;
+            let sortBy = 'datetime';
+            let order = 'asc';
+            
+            if (selectedValue === 'lower') {
+                sortBy = 'price';
+                order = 'asc';
+            } else if (selectedValue === 'higher') {
+                sortBy = 'price';
+                order = 'desc';
+            }
+            
+            // Update URL with sort parameters
+            const url = new URL(window.location);
+            url.searchParams.set('sort', sortBy);
+            url.searchParams.set('order', order);
+            
+            // Reload page with new parameters
+            window.location.href = url.toString();
+        });
+    }
+});
+</script>
+@endpush

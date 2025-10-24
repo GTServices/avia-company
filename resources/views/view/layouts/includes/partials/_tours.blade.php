@@ -14,12 +14,18 @@
                             <div class="badge_save">Save<strong>{{ $tour->discount }}%</strong></div>
                         @endif
                         <div class="short_info">
-                            <i class="{{ $tour->icon }}"></i>{{ $tour->category }}<span class="price"><sup>$</sup>{{ $tour->price }}</span>
+                            <i class="{{ $tour->icon }}"></i>{{ $tour->category }}
+                            @if($tour->price)
+                                <span class="price"><sup>$</sup>{{ $tour->price }}</span>
+                            @endif
                         </div>
                     </a>
                 </div>
                 <div class="tour_title">
                     <h3><strong>{{ $tour->getTranslation("title", app()->getLocale()) }}</strong></h3>
+                    @if($tour->getTranslation("card_description", app()->getLocale()))
+                        <p class="card_description">{{ $tour->getTranslation("card_description", app()->getLocale()) }}</p>
+                    @endif
                 </div>
             </div>
         </div>

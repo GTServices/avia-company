@@ -2,7 +2,7 @@
     <div id="search">
         <ul class="nav nav-tabs">
             <li><a href="#tours" data-bs-toggle="tab" class="active show">Tours</a></li>
-            <li><a href="#transfers" data-bs-toggle="tab">Transfers</a></li>
+            {{-- <li><a href="#transfers" data-bs-toggle="tab">Transfers</a></li> --}}
         </ul>
 
         <div class="tab-content">
@@ -69,7 +69,7 @@
             </div>
             <!-- End rab -->
 
-            <div class="tab-pane" id="transfers">
+            {{-- <div class="tab-pane" id="transfers">
                 <h3>Search Transfers in Paris</h3>
                 <div class="row">
                     <div class="col-md-6">
@@ -139,7 +139,7 @@
                 <!-- End row -->
                 <hr>
                 <button class="btn_1 green"><i class="icon-search"></i>Search now</button>
-            </div>
+            </div> --}}
 
         </div>
     </div>
