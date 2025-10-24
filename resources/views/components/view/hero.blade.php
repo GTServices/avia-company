@@ -13,7 +13,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Search terms</label>
-                                <input type="text" class="form-control" id="search" name="search" placeholder="Type your search terms" value="{{ request('search') }}">
+                                <input type="text" class="form-control" name="search" placeholder="Type your search terms" value="{{ request('search') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -22,6 +22,7 @@
                                 <input type="text" class="form-control date-range-picker" id="date_range" name="date_range" placeholder="Select date range" readonly value="{{ request('date_range') }}">
                             </div>
                         </div>
+                    </div>
                     {{-- <div class="col-md-6">
                         <div class="form-group">
                             <label>Things to do</label>
@@ -153,6 +154,22 @@
     </div>
 </section>
 <!-- End hero -->
+
+@push('styles')
+<style>
+#search_container .form-group {
+    margin-bottom: 15px;
+}
+
+#search_container .row {
+    margin-bottom: 20px;
+}
+
+#search_container .btn_1 {
+    margin-top: 10px;
+}
+</style>
+@endpush
 
 @push('scripts')
 <script>
