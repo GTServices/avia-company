@@ -36,7 +36,7 @@
             <label for="biletstockcount" class="form-label">Количество</label>
             <input type="number" name="biletstockcount" id="biletstockcount" class="form-control"
                    value="{{ old('biletstockcount', $tour->biletstockcount) }}"
-                   placeholder="Введите количество" required>
+                   placeholder="Введите количество">
             @error('biletstockcount')
             <div class="text-danger mt-1">{{ $message }}</div>
             @enderror

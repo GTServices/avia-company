@@ -24,7 +24,7 @@ class TourService
         'card_description' => 'nullable|array',
         'card_description.*' => 'nullable|string',
         'price' => 'nullable|numeric|min:0',
-        'biletstockcount' => 'required|integer|min:0',
+        'biletstockcount' => 'nullable|integer|min:0',
         'datetime' => 'nullable|date',
         'img' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
     ]);
@@ -83,7 +83,7 @@ class TourService
                 'card_description' => 'nullable|array',
                 'card_description.*' => 'nullable|string',
                 'price' => 'nullable|numeric|min:0',
-                'biletstockcount' => 'required|integer|min:0',
+                'biletstockcount' => 'nullable|integer|min:0',
                 'datetime' => 'nullable|date',
                 'img' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
                 'status' => 'nullable',

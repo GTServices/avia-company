@@ -35,7 +35,7 @@
 
     <div class="mb-3">
         <label for="biletstockcount" class="form-label">Количество</label>
-        <input type="number" name="biletstockcount" id="biletstockcount" value="{{ old('biletstockcount') }}" class="form-control" required>
+        <input type="number" name="biletstockcount" id="biletstockcount" value="{{ old('biletstockcount') }}" class="form-control">
         @error('biletstockcount')
         <div class="text-danger mt-1">{{ $message }}</div>
         @enderror
