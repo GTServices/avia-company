@@ -17,6 +17,12 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Date Range</label>
+                            <input type="text" class="form-control date-range-picker" id="date_range" name="date_range" placeholder="Select date range" readonly>
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-6">
+                        <div class="form-group">
                             <label>Things to do</label>
                             <select class="ddslick" name="category">
                                 <option value="0" data-imagesrc="img/icons_search/all_tours.png" selected="">All tours</option>
@@ -29,10 +35,10 @@
                                 <option value="7" data-imagesrc="img/icons_search/skyline.png">Skyline tours</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <!-- End row -->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><i class="icon-calendar-7"></i> Date</label>
@@ -62,7 +68,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
                 <!-- End row -->
                 <hr>
                 <button class="btn_1 green"><i class="icon-search"></i>Search now</button>
@@ -145,3 +151,26 @@
     </div>
 </section>
 <!-- End hero -->
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+    // Initialize date range picker
+    $('.date-range-picker').daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            cancelLabel: 'Clear',
+            format: 'MM/DD/YYYY'
+        }
+    });
+
+    $('.date-range-picker').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+    });
+
+    $('.date-range-picker').on('cancel.daterangepicker', function(ev, picker) {
+        $(this).val('');
+    });
+});
+</script>
+@endpush
