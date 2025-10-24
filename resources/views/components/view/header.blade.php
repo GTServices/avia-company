@@ -15,16 +15,19 @@
                 <div class="col-6">
                     <ul id="top_links">
                         @if(Auth::check())
-                        <li><a href="" id="user_link"><i style="font-size: 16px" class="fas fa-user-circle"></i> {{__("Profile")}}</a></li>
-                        <li><a href="{{route("view.wishlist")}}" id="wishlist_link">{{__("Wishlist")}}</a></li>
-                        <li>
-                            <a href="javascript:void(0);" id="logout_link">
-                                {{ __("Logout") }}
-                            </a>
-                        </li>
-                        @else
-                        <li><a href="#sign-in-dialog" id="access_link">{{__("Sign in")}}</a></li>
+                        {{--
+                            
+                            <li><a href="" id="user_link"><i style="font-size: 16px" class="fas fa-user-circle"></i> {{__("Profile")}}</a></li>
+                            <li><a href="{{route("view.wishlist")}}" id="wishlist_link">{{__("Wishlist")}}</a></li>
+                            <li>
+                                <a href="javascript:void(0);" id="logout_link">
+                                    {{ __("Logout") }}
+                                </a>
+                            </li>
+                            @else
+                            <li><a href="#sign-in-dialog" id="access_link">{{__("Sign in")}}</a></li>
 
+                            --}}
                         @endif
                         <li id="lang_top">
                             <i class="icon-globe-1"></i>
@@ -84,7 +87,9 @@
                 <ul id="top_tools">
                     <li>
                         <div class="dropdown dropdown-cart">
-                            <a href="#0" data-bs-hover="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
+                            {{-- 
+                                <a href="#0" data-bs-hover="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
+                                --}}
                             <ul class="dropdown-menu" id="cart_items">
                                 <li>
                                     <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
