@@ -86,6 +86,15 @@
                 <div class="text-danger mt-1">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="mb-3">
+                <label for="card_description-{{ $language->lang_code }}" class="form-label">Краткое описание для карточки ({{ strtoupper($language->lang_code) }})</label>
+                <textarea name="card_description[{{ $language->lang_code }}]" id="card_description-{{ $language->lang_code }}"
+                          class="form-control" rows="3" placeholder="Краткое описание для отображения на карточке тура">{{ old('card_description.' . $language->lang_code) }}</textarea>
+                @error("card_description.{$language->lang_code}")
+                <div class="text-danger mt-1">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
         @endforeach
     </div>

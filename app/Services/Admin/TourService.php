@@ -21,6 +21,8 @@ class TourService
         'title.*' => 'required|string|max:255',
         'desc' => 'required|array',
         'desc.*' => 'required|string',
+        'card_description' => 'nullable|array',
+        'card_description.*' => 'nullable|string',
         'price' => 'required|numeric|min:0',
         'biletstockcount' => 'required|integer|min:0',
         'datetime' => 'required|date',
@@ -39,6 +41,7 @@ class TourService
         'status' => $request->has('status') ? 1 : 0,
         'title' => [], // 🧠 boş translatable sahələr
         'desc'  => [],
+        'card_description' => [],
     ];
 
     // 🔹 Şəkil varsa optimallaşdır və saxla
@@ -52,6 +55,11 @@ class TourService
     }
     foreach ($request->input('desc') as $locale => $value) {
         $tourData['desc'][$locale] = $value;
+    }
+    if ($request->has('card_description')) {
+        foreach ($request->input('card_description') as $locale => $value) {
+            $tourData['card_description'][$locale] = $value;
+        }
     }
 
     // 🔹 Artıq `create()` birbaşa JSON kimi yazır (Spatie bunu avtomatik serialize edir)
@@ -72,6 +80,8 @@ class TourService
                 'title.*' => 'required|string|max:255',
                 'desc' => 'required|array',
                 'desc.*' => 'required|string',
+                'card_description' => 'nullable|array',
+                'card_description.*' => 'nullable|string',
                 'price' => 'required|numeric|min:0',
                 'biletstockcount' => 'required|integer|min:0',
                 'datetime' => 'required|date',
@@ -105,6 +115,12 @@ class TourService
 
         foreach ($request->input('desc') as $locale => $value) {
             $tour->setTranslation('desc', $locale, $value);
+        }
+
+        if ($request->has('card_description')) {
+            foreach ($request->input('card_description') as $locale => $value) {
+                $tour->setTranslation('card_description', $locale, $value);
+            }
         }
 
         $tour->save();

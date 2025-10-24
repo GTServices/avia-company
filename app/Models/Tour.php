@@ -13,7 +13,7 @@ class Tour extends Model
 
     protected $guarded = [];
 
-    public $translatable = ['title', 'desc'];
+    public $translatable = ['title', 'desc', 'card_description'];
 
     /**
      * Get all images for the tour.
