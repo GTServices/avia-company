@@ -16,13 +16,32 @@ class TourController extends Controller
     {
         $sortBy = $request->get('sort', 'datetime');
         $sortOrder = $request->get('order', 'asc');
+        $search = $request->get('search');
+        $dateRange = $request->get('date_range');
         
         // Handle price sorting
         if ($sortBy === 'price') {
             $sortBy = 'price';
         }
         
-        $tours = $this->tourRepository->all($sortBy, $sortOrder, [], 9);
+        // Build filters array
+        $filters = [];
+        
+        // Add search filter
+        if ($search) {
+            $filters['search'] = $search;
+        }
+        
+        // Add date range filter
+        if ($dateRange) {
+            $dates = explode(' - ', $dateRange);
+            if (count($dates) === 2) {
+                $filters['date_from'] = \Carbon\Carbon::createFromFormat('m/d/Y', trim($dates[0]))->format('Y-m-d');
+                $filters['date_to'] = \Carbon\Carbon::createFromFormat('m/d/Y', trim($dates[1]))->format('Y-m-d');
+            }
+        }
+        
+        $tours = $this->tourRepository->all($sortBy, $sortOrder, $filters, 9);
         return view('view.pages.tours.index', compact('tours'));
     }
 

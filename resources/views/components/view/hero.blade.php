@@ -8,19 +8,20 @@
         <div class="tab-content">
             <div class="tab-pane active show" id="tours">
                 <h3>Search Tours in Paris</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Search terms</label>
-                            <input type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Type your search terms">
+                <form method="GET" action="{{ route('view.tours') }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Search terms</label>
+                                <input type="text" class="form-control" id="search" name="search" placeholder="Type your search terms" value="{{ request('search') }}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Date Range</label>
-                            <input type="text" class="form-control date-range-picker" id="date_range" name="date_range" placeholder="Select date range" readonly>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Date Range</label>
+                                <input type="text" class="form-control date-range-picker" id="date_range" name="date_range" placeholder="Select date range" readonly value="{{ request('date_range') }}">
+                            </div>
                         </div>
-                    </div>
                     {{-- <div class="col-md-6">
                         <div class="form-group">
                             <label>Things to do</label>
@@ -141,10 +142,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- End row -->
-                <hr>
-                <button class="btn_1 green"><i class="icon-search"></i>Search now</button>
+                    </div>
+                    <!-- End row -->
+                    <hr>
+                    <button type="submit" class="btn_1 green"><i class="icon-search"></i>Search now</button>
+                </form>
             </div> --}}
 
         </div>
