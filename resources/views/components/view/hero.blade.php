@@ -1,25 +1,25 @@
 <section id="search_container">
     <div id="search">
         <ul class="nav nav-tabs">
-            <li><a href="#tours" data-bs-toggle="tab" class="active show">Tours</a></li>
-            {{-- <li><a href="#transfers" data-bs-toggle="tab">Transfers</a></li> --}}
+            <li><a href="#tours" data-bs-toggle="tab" class="active show">{{__("Tours")}}</a></li>
+            {{-- <li><a href="#transfers" data-bs-toggle="tab">{{__("Transfers")}}</a></li> --}}
         </ul>
 
         <div class="tab-content">
             <div class="tab-pane active show" id="tours">
-                <h3>Search Tours in Paris</h3>
+                <h3>{{__("Search Tours in Paris")}}</h3>
                 <form method="GET" action="{{ route('view.tours') }}">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Search terms</label>
-                                <input type="text" class="form-control" name="search" placeholder="Type your search terms" value="{{ request('search') }}">
+                                <label>{{__("Search terms")}}</label>
+                                <input type="text" class="form-control" name="search" placeholder="{{__('Type your search terms')}}" value="{{ request('search') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Date Range</label>
-                                <input type="text" class="form-control date-range-picker" id="date_range" name="date_range" placeholder="Select date range" readonly value="{{ request('date_range') }}">
+                                <label>{{__("Date Range")}}</label>
+                                <input type="text" class="form-control date-range-picker" id="date_range" name="date_range" placeholder="{{__('Select date range')}}" readonly value="{{ request('date_range') }}">
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                 </div> --}}
                 <!-- End row -->
                 <hr>
-                <button class="btn_1 green"><i class="icon-search"></i>Search now</button>
+                <button class="btn_1 green"><i class="icon-search"></i>{{__("Search now")}}</button>
             </div>
             <!-- End rab -->
 
