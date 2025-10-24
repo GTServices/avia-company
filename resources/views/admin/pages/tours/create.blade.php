@@ -27,7 +27,7 @@
 
     <div class="mb-3">
         <label for="price" class="form-label">Цена</label>
-        <input type="number" step="0.01" name="price" id="price" value="{{ old('price') }}" class="form-control" required>
+        <input type="number" step="0.01" name="price" id="price" value="{{ old('price') }}" class="form-control">
         @error('price')
         <div class="text-danger mt-1">{{ $message }}</div>
         @enderror
@@ -43,7 +43,7 @@
 
     <div class="mb-3">
         <label for="datetime" class="form-label">Дата и время</label>
-        <input type="datetime-local" name="datetime" id="datetime" value="{{ old('datetime') }}" class="form-control" required>
+        <input type="datetime-local" name="datetime" id="datetime" value="{{ old('datetime') }}" class="form-control">
         @error('datetime')
         <div class="text-danger mt-1">{{ $message }}</div>
         @enderror

@@ -26,7 +26,7 @@
         <!-- Поле для цены -->
         <div class="mb-3">
             <label for="price" class="form-label">Цена</label>
-            <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ old('price', $tour->price) }}" placeholder="Введите цену" required>
+            <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ old('price', $tour->price) }}" placeholder="Введите цену">
             @error('price')
             <div class="text-danger mt-1">{{ $message }}</div>
             @enderror
@@ -49,8 +49,7 @@
                 name="datetime"
                 id="datetime"
                 class="form-control"
-                value="{{ old('datetime', is_array($tour->datetime) ? '' : \Carbon\Carbon::parse($tour->datetime)->format('Y-m-d\TH:i')) }}"
-                required>
+                value="{{ old('datetime', is_array($tour->datetime) ? '' : \Carbon\Carbon::parse($tour->datetime)->format('Y-m-d\TH:i')) }}">
 
             @error('datetime')
             <div class="text-danger mt-1">{{ $message }}</div>
