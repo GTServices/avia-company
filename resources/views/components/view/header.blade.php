@@ -51,8 +51,8 @@
         <div class="row">
             <div class="col-3">
                 <div id="logo_home">
-                    <a style="width: 100px; display: block" href="{{route("view.home")}}" title="Avia company">
-                        <img style="width: 100%;" src="{{getImage($companyInfo->image)}}">
+                    <a style="width: 170px; height:50px; display: block" href="{{route("view.home")}}" title="Avia company">
+                        <img style="width: 100%; height: 100%;" src="{{getImage($companyInfo->image)}}">
                     </a>
                 </div>
             </div>
