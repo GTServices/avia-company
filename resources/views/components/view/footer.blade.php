@@ -38,13 +38,14 @@
             <div class="col-md-2">
                 <h3>{{__("Languages")}}</h3>
                 <div class="styled-select">
-                  <form>
-                      <select name="lang" id="lang">
-                          @foreach($languages as $language)
-                              <option value="French">{{$language->lang_name}}</option>
-                          @endforeach
-                      </select>
-                  </form>
+                    @foreach($languages as $language)
+                    <a hreflang="{{ $language->lang_code }}" href="{{ LaravelLocalization::getLocalizedURL($language->lang_code, null, [], true) }}" style="color: inherit; text-decoration: none;">
+                        {{ strtoupper($language->lang_code) }}
+                    </a>
+                    @if (!$loop->last)
+                    -
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div><!-- End row -->
@@ -55,8 +56,8 @@
                         @if(!empty($companyInfo->instagram))
                             <li><a href="{{ $companyInfo->instagram }}" target="_blank"><i class="bi bi-instagram"></i></a></li>
                         @endif
-                        @if(!empty($companyInfo->whatsapp))
-                            <li><a href="https://wa.me/{{ preg_replace('/\D/', '', $companyInfo->whatsapp) }}" target="_blank"><i class="bi bi-whatsapp"></i></a></li>
+                        @if(!empty($companyInfo->whatsapp_phone))
+                            <li><a href="https://wa.me/{{ preg_replace('/\D/', '', $companyInfo->whatsapp_phone) }}" target="_blank"><i class="bi bi-whatsapp"></i></a></li>
                         @endif
                         @if(!empty($companyInfo->facebook))
                             <li><a href="{{ $companyInfo->facebook }}" target="_blank"><i class="bi bi-facebook"></i></a></li>
