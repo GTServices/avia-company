@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Views;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Repositories\TourRepository;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,8 @@ class TourController extends Controller
         }
         
         $tours = $this->tourRepository->all($sortBy, $sortOrder, $filters, 9);
-        return view('view.pages.tours.index', compact('tours'));
+        $banner = Banner::where('keyword', 'tours')->where('status', 1)->orderBy('order')->first();
+        return view('view.pages.tours.index', compact('tours', 'banner'));
     }
 
     public function view($id, $slug)
