@@ -37,9 +37,10 @@
             </div>
             <div class="col-md-2">
                 <h3>{{__("Languages")}}</h3>
-                <div class="styled-select">
+                <div>
+                    <i class="icon-globe-1"></i>
                     @foreach($languages as $language)
-                    <a hreflang="{{ $language->lang_code }}" href="{{ LaravelLocalization::getLocalizedURL($language->lang_code, null, [], true) }}" style="color: inherit; text-decoration: none;">
+                    <a hreflang="{{ $language->lang_code }}" href="{{ LaravelLocalization::getLocalizedURL($language->lang_code, null, [], true) }}">
                         {{ strtoupper($language->lang_code) }}
                     </a>
                     @if (!$loop->last)
