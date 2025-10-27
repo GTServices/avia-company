@@ -32,14 +32,6 @@
     </div>
 
     <div class="mb-3">
-        <label for="order" class="form-label">Order</label>
-        <input type="number" name="order" id="order" class="form-control" value="{{ $banner->order }}">
-        @error('order')
-        <div class="text-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="mb-3">
         <div class="form-check form-switch">
             <input name="status" class="form-check-input" type="checkbox" id="status" {{ $banner->status ? 'checked' : '' }}>
             <label class="form-check-label" for="status">Активен</label>

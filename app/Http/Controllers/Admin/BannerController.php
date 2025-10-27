@@ -34,7 +34,6 @@ class BannerController extends Controller
             'keyword' => 'nullable|array',
             'keyword.*' => 'nullable|string',
             'status' => 'nullable|boolean',
-            'order' => 'nullable|integer',
         ]);
 
         // Şəkil yüklə
@@ -43,6 +42,10 @@ class BannerController extends Controller
         }
 
         $validated['status'] = $request->has('status') ? 1 : 0;
+        
+        // Auto-increment order
+        $maxOrder = Banner::max('order') ?? 0;
+        $validated['order'] = $maxOrder + 1;
 
         $banner = Banner::create($validated);
 
@@ -62,7 +65,6 @@ class BannerController extends Controller
             'keyword' => 'nullable|array',
             'keyword.*' => 'nullable|string',
             'status' => 'nullable|boolean',
-            'order' => 'nullable|integer',
         ]);
 
         // Şəkil yenilə
