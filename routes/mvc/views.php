@@ -18,7 +18,15 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Redirect to default locale if no language is present in the URL
 Route::get('/', function () {
-    $defaultLocale = LaravelLocalization::getDefaultLocale(); // Get the default language from the config
+    // Get the main language from database
+    $mainLanguage = \App\Models\Language::where('is_main', true)->first();
+    
+    if ($mainLanguage) {
+        return redirect(LaravelLocalization::getLocalizedURL($mainLanguage->lang_code, null, [], true));
+    }
+    
+    // Fallback to default locale if no main language found
+    $defaultLocale = LaravelLocalization::getDefaultLocale();
     return redirect(LaravelLocalization::getLocalizedURL($defaultLocale, null, [], true));
 });
 
