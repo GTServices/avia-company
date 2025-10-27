@@ -3357,12 +3357,13 @@ ul.list_order li span {
 
 /* Tours boxes*/
 .tour_container {
+	height: 100%;
 	background-color: #fff;
 	-webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 	margin: 0;
-	margin-bottom: 30px;
+	/* margin-bottom: 30px; */
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -3374,6 +3375,7 @@ ul.list_order li span {
 }
 
 .img_container {
+	aspect-ratio: 3/2;
 	position: relative;
 	overflow: hidden;
 	-webkit-border-top-left-radius: 5px;
@@ -3388,8 +3390,16 @@ ul.list_order li span {
 	padding: 15px 15px 10px 15px;
 	position: relative;
 }
-.tour_container .tour_title h3{
+.tour_container .tour_title h3 {
 	padding: 5px;
+	display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+	margin: 0 0 3px 0;
+	font-size: 14px;
+	text-transform: uppercase;
 }
 
 .tour_container .tour_title .rating {
@@ -3397,10 +3407,12 @@ ul.list_order li span {
 	margin-left: -3px;
 }
 
-.tour_container .tour_title h3 {
-	margin: 0 0 3px 0;
-	font-size: 14px;
-	text-transform: uppercase;
+.card_description {
+	display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .wishlist {
