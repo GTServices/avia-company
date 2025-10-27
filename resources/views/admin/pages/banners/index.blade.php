@@ -17,7 +17,6 @@
             <th>Изображение</th>
             <th>Ключевое слово</th>
             <th>Статус</th>
-            <th>Порядок</th>
             <th>Действия</th>
         </tr>
     </thead>
@@ -36,11 +35,12 @@
                 @endif
             </td>
             <td>
-                <input type="number" class="form-control form-control-sm order-input" 
-                       data-id="{{ $banner->id }}" value="{{ $banner->order }}" 
-                       style="width: 80px; display: inline-block;">
-            </td>
-            <td>
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px; color: #666;">Порядок:</label>
+                    <input type="number" class="form-control form-control-sm order-input" 
+                           data-id="{{ $banner->id }}" value="{{ $banner->order }}" 
+                           style="width: 80px; display: inline-block;">
+                </div>
                 <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-sm btn-primary">Редактировать</a>
                 <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST" style="display:inline;">
                     @csrf
