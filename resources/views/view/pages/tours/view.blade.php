@@ -66,7 +66,7 @@
                         </div>
                         @endif
                         
-                        <a class="btn_full" href="cart.html">{{__("Book now")}}</a>
+                        <a class="btn_full" href="https://wa.me/{{ preg_replace('/\D/', '', $companyInfo->whatsapp_phone ?? '') }}?text={{ urlencode('Salam! ' . $tour->title . ' turu haqqında məlumat istəyirəm.') }}" target="_blank">{{__("Book now")}}</a>
                     </div>
                     <!--/box_style_1 -->
 
