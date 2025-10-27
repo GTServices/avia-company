@@ -62,40 +62,8 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>{{__("Nəfər")}}</label>
-                                    <div class="numbers-row">
-                                        <input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <table class="table table_summary">
-                            <tbody>
-
-                            <tr>
-                                <td>
-                                    {{__("Total amount")}}
-                                </td>
-                                <td class="text-end">
-                                    3x $52
-                                </td>
-                            </tr>
-                            <tr class="total">
-                                <td>
-                                    {{__("Total cost")}}
-                                </td>
-                                <td class="text-end">
-                                    $154
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        
                         <a class="btn_full" href="cart.html">{{__("Book now")}}</a>
-                        <a class="btn_full_outline" href="#"><i class=" icon-heart"></i> {{__("Add to whislist")}}</a> --}}
                     </div>
                     <!--/box_style_1 -->
 
