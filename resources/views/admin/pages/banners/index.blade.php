@@ -27,7 +27,7 @@
             <td>
                 <img src="{{ asset('storage/' . $banner->image) }}" alt="{{ $banner->keyword }}" style="max-width: 150px; height: auto;">
             </td>
-            <td>{{ $banner->getTranslation('keyword', app()->getLocale()) }}</td>
+            <td>{{ $banner->keyword }}</td>
             <td>
                 @if($banner->status)
                     <span class="badge bg-success">Активен</span>

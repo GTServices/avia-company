@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Repositories\LanguageRepository;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
-    public function __construct(private LanguageRepository $languageRepository, private ImageService $imageService)
+    public function __construct(private ImageService $imageService)
     {
     }
 
@@ -23,16 +22,14 @@ class BannerController extends Controller
 
     public function create()
     {
-        $languages = $this->languageRepository->all('order', 'asc');
-        return view('admin.pages.banners.create', compact('languages'));
+        return view('admin.pages.banners.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
-            'keyword' => 'nullable|array',
-            'keyword.*' => 'nullable|string',
+            'keyword' => 'nullable|string|max:255',
             'status' => 'nullable|boolean',
         ]);
 
@@ -54,16 +51,14 @@ class BannerController extends Controller
 
     public function edit(Banner $banner)
     {
-        $languages = $this->languageRepository->all('order', 'asc');
-        return view('admin.pages.banners.edit', compact('banner', 'languages'));
+        return view('admin.pages.banners.edit', compact('banner'));
     }
 
     public function update(Request $request, Banner $banner)
     {
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
-            'keyword' => 'nullable|array',
-            'keyword.*' => 'nullable|string',
+            'keyword' => 'nullable|string|max:255',
             'status' => 'nullable|boolean',
         ]);
 
