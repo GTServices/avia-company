@@ -52,8 +52,12 @@
             <input type="url" name="facebook" id="socials[facebook]" class="form-control" value="{{ $companyInfo->facebook ?? '' }}">
         </div>
         <div class="mb-3">
-            <label for="socials[whatsapp]" class="form-label">WhatsApp</label>
+            <label for="socials[whatsapp]" class="form-label">WhatsApp (URL)</label>
             <input type="url" name="whatsapp" id="socials[whatsapp]" class="form-control" value="{{ $companyInfo->whatsapp ?? '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="whatsapp_phone" class="form-label">WhatsApp Телефон</label>
+            <input type="text" name="whatsapp_phone" id="whatsapp_phone" class="form-control" value="{{ $companyInfo->whatsapp_phone ?? '' }}">
         </div>
         <div class="mb-3">
             <label for="socials[x]" class="form-label">Twitter</label>
