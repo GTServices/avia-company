@@ -6,6 +6,12 @@ return [
     // These are sorted by the native name, which is the order you might show them in a language selector.
     // Regional languages are sorted by their base language, so "British English" sorts as "English, British"
     'supportedLocales' => [
+        'az'          => ['name' => 'Azerbaijani',               'script' => 'Latn', 'native' => 'Azərbaycan', 'regional' => 'az_AZ'],
+        'ru'          => ['name' => 'Russian',                'script' => 'Cyrl', 'native' => 'Русский', 'regional' => 'ru_RU'],
+    ],
+    
+    /*
+    'supportedLocales' => [
         'ace'         => ['name' => 'Achinese',               'script' => 'Latn', 'native' => 'Aceh', 'regional' => ''],
         'af'          => ['name' => 'Afrikaans',              'script' => 'Latn', 'native' => 'Afrikaans', 'regional' => 'af_ZA'],
         'agq'         => ['name' => 'Aghem',                  'script' => 'Latn', 'native' => 'Aghem', 'regional' => ''],
@@ -348,4 +354,7 @@ return [
     'urlsIgnored' => ['/skipped'],
 
     'httpMethodsIgnored' => ['POST', 'PUT', 'PATCH', 'DELETE'],
+    
+    // Closed old supportedLocales - now only az and ru are active
+    */
 ];
