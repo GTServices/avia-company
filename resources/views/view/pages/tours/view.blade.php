@@ -52,17 +52,17 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><i class="icon-calendar-7"></i> {{__("Date")}}</label>
-                                    <input class="date-pick form-control" type="text">
+                                    <input class="form-control" type="text" value="{{ $tour->datetime ? \Carbon\Carbon::parse($tour->datetime)->format('d.m.Y') : __('Not specified') }}" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><i class=" icon-clock"></i> {{__("Time")}}</label>
-                                    <input class="time-pick form-control" value="12:00 AM" type="text">
+                                    <input class="form-control" type="text" value="{{ $tour->datetime ? \Carbon\Carbon::parse($tour->datetime)->format('H:i') : __('Not specified') }}" readonly>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{__("Nəfər")}}</label>
@@ -95,7 +95,7 @@
                             </tbody>
                         </table>
                         <a class="btn_full" href="cart.html">{{__("Book now")}}</a>
-                        <a class="btn_full_outline" href="#"><i class=" icon-heart"></i> {{__("Add to whislist")}}</a>
+                        <a class="btn_full_outline" href="#"><i class=" icon-heart"></i> {{__("Add to whislist")}}</a> --}}
                     </div>
                     <!--/box_style_1 -->
 
