@@ -80,6 +80,15 @@ class BannerController extends Controller
         return redirect()->route('admin.banners.index')->with('success', 'Баннер успешно обновлен!');
     }
 
+    public function updateOrder(Request $request, $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->order = $request->input('order');
+        $banner->save();
+
+        return response()->json(['success' => true]);
+    }
+
     public function destroy(Banner $banner)
     {
         if ($banner->image && Storage::disk('public')->exists($banner->image)) {

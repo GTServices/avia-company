@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => [ 'admin']]
         ->parameters(['about_us' => 'aboutUs'])
         ->except(['show']);
     Route::resource('/banners', \App\Http\Controllers\Admin\BannerController::class)->except(['show']);
+    Route::post('/banners/{id}/update-order', [\App\Http\Controllers\Admin\BannerController::class, 'updateOrder'])->name('banners.update.order');
     Route::post('/logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('logout');
 });
 

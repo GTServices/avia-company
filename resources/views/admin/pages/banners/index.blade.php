@@ -35,7 +35,11 @@
                     <span class="badge bg-danger">Неактивен</span>
                 @endif
             </td>
-            <td>{{ $banner->order }}</td>
+            <td>
+                <input type="number" class="form-control form-control-sm order-input" 
+                       data-id="{{ $banner->id }}" value="{{ $banner->order }}" 
+                       style="width: 80px; display: inline-block;">
+            </td>
             <td>
                 <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-sm btn-primary">Редактировать</a>
                 <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST" style="display:inline;">
@@ -50,3 +54,35 @@
 </table>
 @endsection
 
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const orderInputs = document.querySelectorAll('.order-input');
+    
+    orderInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const bannerId = this.getAttribute('data-id');
+            const newOrder = this.value;
+            
+            fetch(`/admin/banners/${bannerId}/update-order`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ order: newOrder })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Порядок обновлен');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
+    });
+});
+</script>
+@endpush
