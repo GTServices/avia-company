@@ -64,7 +64,7 @@
             <li>
                 <a href="{{route("admin.banners.index")}}">
                     <div class="parent-icon"><i class="material-icons-outlined">image</i></div>
-                    <div class="menu-title">Banner-lər</div>
+                    <div class="menu-title">Баннеры</div>
                 </a>
             </li>
             <li>

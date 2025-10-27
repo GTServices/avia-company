@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="page-breadcrumb d-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">Yeni Banner</div>
+    <div class="breadcrumb-title pe-3">Добавить баннер</div>
 </div>
 
 @if($errors->any())
@@ -19,7 +19,7 @@
     @csrf
 
     <div class="mb-3">
-        <label for="image" class="form-label">Şəkil</label>
+        <label for="image" class="form-label">Изображение</label>
         <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="previewImage(this, 'image-preview')" required>
         @error('image')
         <div class="text-danger mt-1">{{ $message }}</div>
@@ -41,7 +41,7 @@
     <div class="mb-3">
         <div class="form-check form-switch">
             <input name="status" class="form-check-input" type="checkbox" id="status" checked>
-            <label class="form-check-label" for="status">Aktiv</label>
+            <label class="form-check-label" for="status">Активен</label>
         </div>
     </div>
 
@@ -70,8 +70,8 @@
         @endforeach
     </div>
 
-    <button type="submit" class="btn btn-primary">Yadda Saxla</button>
-    <a href="{{ route('admin.banners.index') }}" class="btn btn-secondary">Geri</a>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{{ route('admin.banners.index') }}" class="btn btn-secondary">Назад</a>
 </form>
 
 @push('scripts')
