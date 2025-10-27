@@ -20,7 +20,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::get('/', function () {
     // Get the main language from database
     $mainLanguage = \App\Models\Language::where('is_main', true)->first();
-    dd($mainLanguage);
+    
     if ($mainLanguage) {
         return redirect(LaravelLocalization::getLocalizedURL($mainLanguage->lang_code, null, [], true));
     }
