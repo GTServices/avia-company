@@ -48,26 +48,29 @@
                 <aside class="col-lg-4">
                     <div class="box_style_1 expose">
                         <h3 class="inner">- {{__("Booking")}} -</h3>
+                        
+                        @if($tour->datetime)
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><i class="icon-calendar-7"></i> {{__("Date")}}</label>
-                                    <input class="form-control" type="text" value="{{ $tour->datetime ? \Carbon\Carbon::parse($tour->datetime)->format('d.m.Y') : __('Not specified') }}" readonly>
+                                    <input class="form-control" type="text" value="{{ \Carbon\Carbon::parse($tour->datetime)->format('d.m.Y') }}" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><i class=" icon-clock"></i> {{__("Time")}}</label>
-                                    <input class="form-control" type="text" value="{{ $tour->datetime ? \Carbon\Carbon::parse($tour->datetime)->format('H:i') : __('Not specified') }}" readonly>
+                                    <input class="form-control" type="text" value="{{ \Carbon\Carbon::parse($tour->datetime)->format('H:i') }}" readonly>
                                 </div>
                             </div>
                         </div>
+                        @endif
                         
                         <a class="btn_full" href="cart.html">{{__("Book now")}}</a>
                     </div>
                     <!--/box_style_1 -->
 
-                    @include('view.layouts.includes.partials._info_center')
+                    {{-- @include('view.layouts.includes.partials._info_center') --}}
                 </aside>
             </div>
             <!--End row -->
