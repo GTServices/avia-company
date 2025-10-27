@@ -3400,7 +3400,7 @@ ul.list_order li span {
 	border-top-right-radius: 5px;
 }
 
-.img_container .img.fluid {
+.img_container .img-fluid {
 	height: 100% !important;
 	object-fit: cover;
 }
