@@ -38,10 +38,7 @@
             <div class="row">
                 <div class="col-lg-8" id="single_tour_desc">
 
-
-
                     <div class="row">
-
                         {!! $tour->desc !!}
                     </div>
 
@@ -78,7 +75,6 @@
                         <br>
                         <table class="table table_summary">
                             <tbody>
-
 
                             <tr>
                                 <td>
