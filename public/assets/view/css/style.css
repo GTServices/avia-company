@@ -3400,6 +3400,11 @@ ul.list_order li span {
 	border-top-right-radius: 5px;
 }
 
+.img_container .img.fluid {
+	height: 100% !important;
+	object-fit: cover;
+}
+
 .tour_container .tour_title {
 	padding: 15px 15px 10px 15px;
 	position: relative;
