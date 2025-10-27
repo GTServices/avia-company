@@ -27,6 +27,7 @@ class TourService
         'biletstockcount' => 'nullable|integer|min:0',
         'datetime' => 'nullable|date',
         'img' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
+        'banner_image' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
     ]);
 
     if ($validator->fails()) {
@@ -47,6 +48,11 @@ class TourService
     // 🔹 Şəkil varsa optimallaşdır və saxla
     if ($request->hasFile('img')) {
         $tourData['img'] = $this->imageService->optimizeAndStore($request->file('img'), 'tours');
+    }
+
+    // 🔹 Banner şəkil varsa optimallaşdır və saxla
+    if ($request->hasFile('banner_image')) {
+        $tourData['banner_image'] = $this->imageService->optimizeAndStore($request->file('banner_image'), 'tours');
     }
 
     // 🔹 Translatable datanı `create`-dən əvvəl birləşdir
@@ -86,6 +92,7 @@ class TourService
                 'biletstockcount' => 'nullable|integer|min:0',
                 'datetime' => 'nullable|date',
                 'img' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
+                'banner_image' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
                 'status' => 'nullable',
             ]
         );
@@ -101,6 +108,15 @@ class TourService
             }
 
             $tour->img = $this->imageService->optimizeAndStore($request->file('img'), 'tours');
+        }
+
+        // 🔹 Banner şəkil yenilənməsi
+        if ($request->hasFile('banner_image')) {
+            if ($tour->banner_image && Storage::disk('public')->exists($tour->banner_image)) {
+                Storage::disk('public')->delete($tour->banner_image);
+            }
+
+            $tour->banner_image = $this->imageService->optimizeAndStore($request->file('banner_image'), 'tours');
         }
 
         // 🔹 Əsas məlumatlar

@@ -15,7 +15,7 @@
 
     <div class="mb-3">
         <label for="img" class="form-label">Изображение</label>
-        <input type="file" name="img" id="img" class="form-control" accept="image/*" onchange="previewImage(this)">
+        <input type="file" name="img" id="img" class="form-control" accept="image/*" onchange="previewImage(this, 'image-preview')">
         @error('img')
         <div class="text-danger mt-1">{{ $message }}</div>
         @enderror
@@ -23,6 +23,18 @@
 
     <div class="mb-3">
         <img id="image-preview" src="#" alt="Предпросмотр" style="display:none;max-width:300px;height:auto;margin-top:10px;">
+    </div>
+
+    <div class="mb-3">
+        <label for="banner_image" class="form-label">Banner Изображение</label>
+        <input type="file" name="banner_image" id="banner_image" class="form-control" accept="image/*" onchange="previewImage(this, 'banner-preview')">
+        @error('banner_image')
+        <div class="text-danger mt-1">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <img id="banner-preview" src="#" alt="Banner Предпросмотр" style="display:none;max-width:300px;height:auto;margin-top:10px;">
     </div>
 
     <div class="mb-3">
@@ -105,8 +117,8 @@
 @push("scripts")
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 <script>
-function previewImage(input){
-    const preview=document.getElementById('image-preview');
+function previewImage(input, previewId){
+    const preview=document.getElementById(previewId);
     if(input.files&&input.files[0]){
         const reader=new FileReader();
         reader.onload=e=>{

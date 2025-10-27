@@ -14,11 +14,23 @@
         <!-- Поле для изображения -->
         <div class="mb-3">
             <label for="image" class="form-label">Обновить изображение</label>
-            <input type="file" name="img" id="image" class="form-control" accept="image/*" onchange="previewImage(this)">
+            <input type="file" name="img" id="image" class="form-control" accept="image/*" onchange="previewImage(this, 'image-preview')">
             <div class="mt-2">
-                <img id="image-preview" src="{{\Illuminate\Support\Facades\Storage::url($tour->img) }}" alt="Текущее изображение" style="max-width: 300px; height: auto;">
+                <img id="image-preview" src="{{ asset('storage/' . $tour->img) }}" alt="Текущее изображение" style="max-width: 300px; height: auto; {{ $tour->img ? '' : 'display: none;' }}">
             </div>
             @error('img')
+            <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- Поле для banner изображения -->
+        <div class="mb-3">
+            <label for="banner_image" class="form-label">Обновить Banner изображение</label>
+            <input type="file" name="banner_image" id="banner_image" class="form-control" accept="image/*" onchange="previewImage(this, 'banner-preview')">
+            <div class="mt-2">
+                <img id="banner-preview" src="{{ asset('storage/' . $tour->banner_image) }}" alt="Текущее Banner изображение" style="max-width: 300px; height: auto; {{ $tour->banner_image ? '' : 'display: none;' }}">
+            </div>
+            @error('banner_image')
             <div class="text-danger mt-1">{{ $message }}</div>
             @enderror
         </div>
@@ -122,8 +134,8 @@
 @push("scripts")
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script>
-        function previewImage(input) {
-            const preview = document.getElementById('image-preview');
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
 
