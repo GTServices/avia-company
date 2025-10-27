@@ -1,6 +1,6 @@
 @extends('view.layouts.app')
 @section('content')
-    <section class="parallax-window" data-parallax="scroll" data-image-src="img/header_bg.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="{{ $banner && $banner->image ? asset('storage/' . $banner->image) : 'img/header_bg.jpg' }}" data-natural-width="1400" data-natural-height="470">
         <div class="parallax-content-1 opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
             <div class="animated fadeInDown">
                 <h1>{{__("About page title")}}</h1>
