@@ -66,7 +66,11 @@
                         </div>
                         @endif
                         
-                        <a class="btn_full" href="https://wa.me/{{ preg_replace('/\D/', '', $companyInfo->whatsapp_phone ?? '') }}?text={{ urlencode('Salam! ' . $tour->title . ' turu haqqında məlumat istəyirəm.') }}" target="_blank">{{__("Book now")}}</a>
+                        @php
+                            $message = __("Salam! course_name turu haqqında məlumat istəyirəm.");
+                            $message = str_replace('course_name', $tour->title, $message);
+                        @endphp
+                        <a class="btn_full" href="https://wa.me/{{ preg_replace('/\D/', '', $companyInfo->whatsapp_phone ?? '') }}?text={{ urlencode($message) }}" target="_blank">{{__("Book now")}}</a>
                     </div>
                     <!--/box_style_1 -->
 
