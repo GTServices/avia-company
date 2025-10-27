@@ -8,11 +8,13 @@
                     <div class="col-md-8">
                         <h1>{{$tour->title}}</h1>
                     </div>
+                    @if($tour->price)
                     <div class="col-md-4">
                         <div id="price_single_main">
                             <span><sup>$</sup>{{$tour->price}}</span>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
