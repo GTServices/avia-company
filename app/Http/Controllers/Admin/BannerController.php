@@ -30,7 +30,6 @@ class BannerController extends Controller
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
             'keyword' => 'nullable|string|max:255',
-            'status' => 'nullable|boolean',
         ]);
 
         // Şəkil yüklə
@@ -59,7 +58,6 @@ class BannerController extends Controller
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
             'keyword' => 'nullable|string|max:255',
-            'status' => 'nullable|boolean',
         ]);
 
         // Şəkil yenilə
