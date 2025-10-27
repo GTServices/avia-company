@@ -1875,10 +1875,12 @@ a#filters_col_bt .icon_set_1_icon-65 {
 }
 
 #single_tour_desc table tr td:first-child {
+	text-align: center;
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 #single_tour_desc table tr td:last-child {
+	text-align: center;
 	border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 
