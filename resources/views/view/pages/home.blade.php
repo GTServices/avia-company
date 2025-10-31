@@ -15,7 +15,7 @@
 
 
             <p class="text-center nopadding mt-3">
-                <a href="{{route('view.tours')}}" class="btn_1 medium"><i class="icon-eye-7"></i>{{__("View all tours")}} ({{$toursCount}}) </a>
+                <a href="{{route('view.tours')}}" class="btn_1 medium mt-3"><i class="icon-eye-7"></i>{{__("View all tours")}} ({{$toursCount}}) </a>
             </p>
         </div><!-- End container -->
 
