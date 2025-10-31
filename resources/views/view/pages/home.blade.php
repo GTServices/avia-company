@@ -14,7 +14,7 @@
             </div>
 
 
-            <p class="text-center nopadding">
+            <p class="text-center nopadding mt-3">
                 <a href="{{route('view.tours')}}" class="btn_1 medium"><i class="icon-eye-7"></i>{{__("View all tours")}} ({{$toursCount}}) </a>
             </p>
         </div><!-- End container -->
