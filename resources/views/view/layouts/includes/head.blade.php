@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 <meta name="author" content="Ansonika">
-<title>CITY TOURS - City tours and travel site template by Ansonika</title>
+<title></title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- Favicons -->
 <link rel="shortcut icon" href="{{ getImage($companyInfo->favicon) }}" type="image/x-icon">
